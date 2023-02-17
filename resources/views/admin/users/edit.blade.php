@@ -52,22 +52,22 @@
                 @foreach ($specializations as $specialization)
                     <div class="form-check">
                         <input
-                            class="form-check-input @error ('specializations') is-invalid @enderror"
+                            class="form-check-input @error ('specializations.*') is-invalid @enderror"
                             name="specializations[]"
                             @if(in_array($specialization->id, old('specializations', $user->specializations->pluck('id')->all())))
                                 checked
                             @endif
                             type="checkbox"
                             value="{{ $specialization->id }}"
-                            id="tag-{{ $specialization->id }}"
+                            id="specialization-{{ $specialization->id }}"
                         >
-                        <label class="form-check-label" for="tag-{{$specialization->id}}">
+                        <label class="form-check-label" for="specialization-{{$specialization->id}}">
                             {{ $specialization->name }}
                         </label>
                         <div id="invalidCheck3Feedback" class="invalid-feedback">
-                        @error('specializations')
+                        @error('specializations.*')
                             <ul>
-                                @foreach ($errors->get('specializations') as $error)
+                                @foreach ($errors->get('specializations.*') as $error)
                                     <li>{{ $error }}</li>
                                 @endforeach
                             </ul>

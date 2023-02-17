@@ -2,18 +2,21 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Review;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
-class ReviewsController extends Controller
+class ReviewController extends Controller
 {
     public function index()
     {
+        $user = Auth::user();
         $reviews = Review::all();
 
         return view('admin.reviews.index', [
             'reviews' => $reviews,
+            'user' => $user,
         ]);
     }
 }

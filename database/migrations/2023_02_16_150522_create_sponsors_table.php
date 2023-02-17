@@ -18,7 +18,7 @@ class CreateSponsorsTable extends Migration
             $table->string('title', 20);
             $table->unsignedTinyInteger('duration');
             $table->text('description');
-            $table->unsignedDouble('cost', 2, 2);
+            $table->float('cost', 3, 2);
             $table->timestamps();
         });
     }

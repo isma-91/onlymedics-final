@@ -28,10 +28,12 @@ class UserSeeder extends Seeder
                 'curriculum_vitae'  => null,
                 'photo'             => 'https://picsum.photos/id/'. rand(0, 100) .'/500/400',
                 'phone'             => $faker->phoneNumber(),
-                'services'          => $faker->paragraph(),
+                'services'          => $faker->sentence(),
                 'email'             => $faker->email(),
                 'password'          => Hash::make($faker->word()),
             ]);
+
+
         }
     }
 }

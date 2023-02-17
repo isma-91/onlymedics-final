@@ -30,4 +30,12 @@ class User extends Authenticatable
     public function specializations() {
         return $this->belongsToMany('App\Specialization');
     }
+
+    public function messages() {
+        return $this->belongsToMany('App\Message');
+    }
+
+    public function reviews() {
+        return $this->belongsToMany('App\Review');
+    }
 }

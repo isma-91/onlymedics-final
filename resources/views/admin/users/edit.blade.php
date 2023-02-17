@@ -47,27 +47,25 @@
         </div>
 
         <div class="col-12">
-            <fieldset>
-                <legend>Specializzazioni</legend>
+                <h2>Specializzazioni</h2>
                 @foreach ($specializations as $specialization)
                     <div class="form-check">
                         <input
-                            class="form-check-input @error ('specializations.*') is-invalid @enderror"
-                            name="specializations[]"
-                            @if(in_array($specialization->id, old('specializations', $user->specializations->pluck('id')->all())))
-                                checked
-                            @endif
+                            id="specialization-{{ $specialization->id }}"
+                            class="form-check-input @error('specializations.'.$loop->index) is-invalid @enderror"
                             type="checkbox"
                             value="{{ $specialization->id }}"
-                            id="specialization-{{ $specialization->id }}"
+                            name="specializations[]"
+                            @if(in_array($specialization->id, old('specializations', $user->specializations->pluck('id')->all()))) checked
+                            @endif
                         >
                         <label class="form-check-label" for="specialization-{{$specialization->id}}">
                             {{ $specialization->name }}
                         </label>
-                        <div id="invalidCheck3Feedback" class="invalid-feedback">
-                        @error('specializations.*')
+                        <div class="invalid-feedback">
+                        @error('specializations.'.$loop->index)
                             <ul>
-                                @foreach ($errors->get('specializations.*') as $error)
+                                @foreach ($errors->get('specializations.' .$loop->index) as $error)
                                     <li>{{ $error }}</li>
                                 @endforeach
                             </ul>
@@ -75,7 +73,6 @@
                         </div>
                     </div>
                 @endforeach
-            </fieldset>
         </div>
 
         <div class="mb-3">

@@ -16,7 +16,7 @@ class UserController extends Controller
         'last_name'           => 'required|string|max:50',
         'address'             => 'required|string|max:100',
         'specializations'     => 'array',
-        //TODO:capire come catturare l'errore dal value
+        //TODO:migliorare l'errore
         'specializations.*'   => 'integer|exists:specializations,id',
         'curriculum_vitae'    => 'nullable|image|max:1024',
         'photo'               => 'nullable|image|max:1024',

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\User;
 use App\Specialization;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 
 class UserController extends Controller
@@ -15,10 +16,11 @@ class UserController extends Controller
         'last_name'           => 'required|string|max:50',
         'address'             => 'required|string|max:100',
         'specializations'     => 'array',
+        //TODO:capire come catturare l'errore dal value
         'specializations.*'   => 'integer|exists:specializations,id',
         'curriculum_vitae'    => 'nullable|image|max:1024',
         'photo'               => 'nullable|image|max:1024',
-        'phone'               => 'required|regex:/^[0-9]+$/|max:20|unique:users',
+        'phone'               => 'required|regex:/^[0-9]+$/|max:20',
         'services'            => 'nullable|string',
     ];
 
@@ -39,6 +41,7 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         //validare
+        $this->validations['phone'] = Rule::unique('users')->ignore($user);
         $request->validate($this->validations);
         //salvare i dati
         $data = $request->all();

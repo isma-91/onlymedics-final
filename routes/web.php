@@ -29,5 +29,5 @@ Route::middleware('auth')
         Route::get('/messages', 'MessageController@index')->name('messages.index');
         Route::get('/messages/{message}', 'MessageController@show')->name('messages.show');
         Route::delete('/messages/{message}', 'MessageController@destroy')->name('messages.destroy');
-
+        Route::get('/reviews', 'ReviewsController@index')->name('reviews.index');
 });

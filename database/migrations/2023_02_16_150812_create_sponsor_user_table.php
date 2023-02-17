@@ -16,8 +16,8 @@ class CreateSponsorUserTable extends Migration
         Schema::create('sponsor_user', function (Blueprint $table) {
             // $table->foreignId('user_id')->constrained();
             // $table->foreignId('sponsor_id')->constrained();
-            $table->unsignedTinyInteger('sponsor_id');
-            $table->unsignedMediumInteger('user_id');
+            $table->unsignedTinyInteger('sponsor_id')->nullable();
+            $table->unsignedMediumInteger('user_id')->nullable();
 
             $table->foreign('sponsor_id')->references('id')->on('sponsors');
             $table->foreign('user_id')->references('id')->on('users');

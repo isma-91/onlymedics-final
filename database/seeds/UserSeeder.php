@@ -1,6 +1,8 @@
 <?php
 
 use App\User;
+use App\Sponsor;
+use App\Specialization;
 use Faker\Factory;
 use Faker\Generator as Faker;
 use Illuminate\Database\Seeder;
@@ -16,8 +18,10 @@ class UserSeeder extends Seeder
     public function run(Faker $faker)
     {
 
-        $names = config('names');
         $faker = Factory::create('it_IT');
+        $names = config('names');
+        $sponsors = Sponsor::all()->pluck('id');
+        $specializations = Specialization::all()->pluck('id');
 
         //Foreach per avere tutti i nomi differenti, ma da vedere se funzionerà quando faremo anche tutto il resto
         foreach ($names as $name) {
@@ -33,7 +37,8 @@ class UserSeeder extends Seeder
                 'password'          => Hash::make($faker->word()),
             ]);
 
-
+            $user->sponsors()->attach($faker->randomElements($sponsors, rand(0, 1)));
+            $user->specializations()->attach($faker->randomElements($specializations, rand(1, 3)));
         }
     }
 }

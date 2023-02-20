@@ -4,7 +4,6 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th scope="col">ID</th>
                 <th scope="col">Titolo</th>
                 <th scope="col">Durata</th>
                 <th scope="col">Costo</th>
@@ -13,8 +12,7 @@
         <tbody>
             @foreach ($sponsors as $sponsor)
                 <tr>
-                    <th scope="row">{{ $sponsor->id }}</th>
-                    <td>{{ $sponsor->title }}</td>
+                    <th scope="row">{{ $sponsor->title }}</th>
                     <td>{{ $sponsor->duration }}</td>
                     <td>{{ $sponsor->cost}}€</td>
                     <td>

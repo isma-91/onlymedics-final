@@ -47,7 +47,7 @@
         </div>
 
         <div class="col-12">
-                <h2>Specializzazioni</h2>
+                <label for="specializations[]" class="form-label">Specializzazioni</label>
                 @foreach ($specializations as $specialization)
                     <div class="form-check">
                         <input

@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
 use App\User;
-use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Specialization;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
 {
@@ -52,6 +53,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:50'],
             'last_name' => ['required', 'string', 'max:50'],
+            'specializations' => ['required', 'in:Allergologia,Cardiologia,Dermatologia,Chirurgia,Gastroenterologia,Medicina del lavoro,Urologia,Geriatria,Ematologia,Nefrologia,Reumatologia,Psichiatria,Neuropsichiatria infantile,Neurologia,Pediatria', 'string', 'exists:specializations,name'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:3', 'confirmed'],
             'address' => ['required', 'string'],
@@ -66,12 +68,14 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        return $user= User::create([
             'name' => $data['name'],
             'last_name' => $data['last_name'],
             'email' => $data['email'],
             'address' => $data['address'],
             'password' => Hash::make($data['password']),
         ]);
+
+        $user->specializations()->attach($data['specializations']);
     }
 }

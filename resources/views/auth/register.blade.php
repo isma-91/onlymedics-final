@@ -54,6 +54,23 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="specializations" class="col-md-4 col-form-label text-md-right ">{{ __('Specializzazione') }}</label>
+                            <div class="col-md-6">
+                                <select class="form-select @error('specializations') is-invalid @enderror" name="specializations" aria-label="Default select example">
+                                    <option selected>Open this select menu</option>
+                                    @foreach ($specializations as $sp)
+                                        <option value=" {{ $sp->name }} ">{{$sp->name}}</option>
+                                    @endforeach
+                                </select>
+                                @error('specializations')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail') }}</label>
 
                             <div class="col-md-6">

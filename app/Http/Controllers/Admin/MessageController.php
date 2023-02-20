@@ -13,7 +13,8 @@ class MessageController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $messages = Message::all();
+        // $messages = Message::all();
+        $messages = Message::where('user_id', Auth::id())->get();
 
         return view('admin.messages.index', [
             'messages' => $messages,
@@ -23,11 +24,17 @@ class MessageController extends Controller
 
     public function show(Message $message)
     {
-        //
+        $user = Auth::user();
+        return view('admin.messages.show', [
+            'message' => $message,
+            'user' => $user,
+        ]);
     }
 
     public function destroy(Message $message)
     {
-        //
+        $message->delete();
+
+        return redirect()->route('admin.messages.index')->with('success_delete', $message);
     }
 }

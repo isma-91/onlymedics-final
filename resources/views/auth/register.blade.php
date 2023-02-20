@@ -59,7 +59,7 @@
                                 <select class="form-select @error('specializations') is-invalid @enderror" name="specializations" aria-label="Default select example">
                                     <option selected>Open this select menu</option>
                                     @foreach ($specializations as $sp)
-                                        <option value=" {{ $sp->name }} ">{{$sp->name}}</option>
+                                        <option value="{{ $sp->id }}">{{$sp->name}}</option>
                                     @endforeach
                                 </select>
                                 @error('specializations')

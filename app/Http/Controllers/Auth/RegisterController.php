@@ -53,7 +53,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:50'],
             'last_name' => ['required', 'string', 'max:50'],
-            'specializations' => ['required', 'in:Allergologia,Cardiologia,Dermatologia,Chirurgia,Gastroenterologia,Medicina del lavoro,Urologia,Geriatria,Ematologia,Nefrologia,Reumatologia,Psichiatria,Neuropsichiatria infantile,Neurologia,Pediatria', 'string', 'exists:specializations,name'],
+            'specializations' => ['required', 'in:1,2,3,4,5,6,7,8,9,10,11,12,13,14,15', 'integer', 'exists:specializations,id'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:3', 'confirmed'],
             'address' => ['required', 'string'],
@@ -68,7 +68,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return $user= User::create([
+        $user = User::create([
             'name' => $data['name'],
             'last_name' => $data['last_name'],
             'email' => $data['email'],
@@ -77,5 +77,7 @@ class RegisterController extends Controller
         ]);
 
         $user->specializations()->attach($data['specializations']);
+
+        return $user;
     }
 }

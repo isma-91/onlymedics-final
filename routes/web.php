@@ -30,6 +30,7 @@ Route::middleware('auth')
         Route::get('/messages/{message}', 'MessageController@show')->name('messages.show');
         Route::delete('/messages/{message}', 'MessageController@destroy')->name('messages.destroy');
         Route::get('/reviews', 'ReviewController@index')->name('reviews.index');
+        Route::get('/reviews/{review}', 'ReviewController@show')->name('reviews.show');
         Route::get('/users/{user}', 'UserController@show')->name('users.show');
         Route::put('/users/{user}', 'UserController@update')->name('users.update');
         Route::get('/users/{user}/edit', 'UserController@edit')->name('users.edit');

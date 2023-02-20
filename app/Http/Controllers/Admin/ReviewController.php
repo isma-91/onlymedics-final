@@ -19,4 +19,13 @@ class ReviewController extends Controller
             'user' => $user,
         ]);
     }
+
+    public function show(Review $review)
+    {
+        $user = Auth::user();
+        return view('admin.reviews.show', [
+            'review' => $review,
+            'user' => $user,
+        ]);
+    }
 }

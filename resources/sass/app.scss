@@ -6,3 +6,21 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+.review-message {
+    max-width: 600px;
+    height: 50px;
+    line-height: 50px;
+}
+
+.review-vote {
+    height: 50px;
+    width: 50px;
+}
+
+.righe {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    max-width: 1000px
+}

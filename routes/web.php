@@ -33,4 +33,6 @@ Route::middleware('auth')
         Route::get('/users/{user}', 'UserController@show')->name('users.show');
         Route::put('/users/{user}', 'UserController@update')->name('users.update');
         Route::get('/users/{user}/edit', 'UserController@edit')->name('users.edit');
+        Route::get('/sponsors', 'SponsorController@index')->name('sponsors.index');
+        Route::get('/sponsors/{sponsor}', 'SponsorController@show')->name('sponsors.show');
 });

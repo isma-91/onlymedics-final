@@ -79,10 +79,14 @@
                                             </a>
                                             <a class="dropdown-item" href="{{ route('admin.reviews.index') }}">
                                                 Recensioni
-                                             </a>
+                                            </a>
                                         </div>
                                     </li>
                                 </div>
+                            </li>
+
+                            <li class="nav-item list-unstyled">
+                                <a class="btn btn-primary text-light fw-bold" href="{{ route('admin.sponsors.index') }}">DIVENTA PREMIUM</a>
                             </li>
                         @endguest
                     </ul>

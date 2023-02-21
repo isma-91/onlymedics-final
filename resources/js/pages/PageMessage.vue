@@ -1,6 +1,6 @@
 <template >
     <div>
-        <h1>sono la home</h1>
+        <h1>sono il form per scrivere i messaggi</h1>
     </div>
 </template>
 

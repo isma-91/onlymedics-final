@@ -1,6 +1,6 @@
 <template >
     <div>
-        <h1>sono la home</h1>
+        <h1>sono la pagina per scrivere le recensioni</h1>
     </div>
 </template>
 

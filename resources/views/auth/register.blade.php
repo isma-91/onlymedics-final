@@ -56,8 +56,8 @@
                         <div class="form-group row">
                             <label for="specializations" class="col-md-4 col-form-label text-md-right ">{{ __('Specializzazione') }}</label>
                             <div class="col-md-6">
-                                <select class="form-select @error('specializations') is-invalid @enderror" name="specializations" aria-label="Default select example">
-                                    <option selected>Open this select menu</option>
+                                <select class="form-select @error('specializations') is-invalid @enderror" name="specializations" aria-label="Default select example" required>
+                                    <option value="">Open this select menu</option>
                                     @foreach ($specializations as $sp)
                                         <option value="{{ $sp->id }}">{{$sp->name}}</option>
                                     @endforeach

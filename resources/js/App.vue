@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <h1>HOMEPAGE</h1>
+    <div class="container">
+        <router-view></router-view>
     </div>
 </template>
 
@@ -13,5 +13,5 @@ name: 'App',
 </script>
 
 <style lang="scss">
-    // @import '~bootstrap/scss/bootstrap';
+    @import '~bootstrap/scss/bootstrap';
 </style>

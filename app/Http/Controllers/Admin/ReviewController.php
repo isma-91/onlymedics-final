@@ -13,6 +13,8 @@ class ReviewController extends Controller
     {
         $user = Auth::user();
         $reviews = Review::all();
+        $reviews = Review::where('user_id', Auth::id())->get();
+
 
         return view('admin.reviews.index', [
             'reviews' => $reviews,
@@ -23,6 +25,7 @@ class ReviewController extends Controller
     public function show(Review $review)
     {
         $user = Auth::user();
+        if (Auth::id() !== $review->user_id) abort(401);
         return view('admin.reviews.show', [
             'review' => $review,
             'user' => $user,

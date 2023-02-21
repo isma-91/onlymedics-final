@@ -25,6 +25,7 @@ class MessageController extends Controller
     public function show(Message $message)
     {
         $user = Auth::user();
+        if (Auth::id() !== $message->user_id) abort(401);
         return view('admin.messages.show', [
             'message' => $message,
             'user' => $user,

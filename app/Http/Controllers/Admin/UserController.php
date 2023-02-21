@@ -7,6 +7,7 @@ use App\Specialization;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -26,6 +27,7 @@ class UserController extends Controller
 
     public function show(User $user)
     {
+        if (Auth::id() !== $user->id) abort(401);
         return view('admin.users.show', [
             'user' => $user
         ]);

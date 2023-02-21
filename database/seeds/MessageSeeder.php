@@ -18,9 +18,6 @@ class MessageSeeder extends Seeder
     {
         $faker = Factory::create('it_IT');
         $users = User::all('id')->all();
-        //TODO:invertire con reviews
-        $names = Review::all()->pluck('guest_name');
-        $last_names = Review::all()->pluck('guest_last_name');
 
         //eventualmente correggere/togliere la variabile se non la si utilizza
         for ($i = 0; $i < 100; $i++){
@@ -28,8 +25,8 @@ class MessageSeeder extends Seeder
                 'user_id'           => $faker->randomElement($users)->id,
                 'title'             => $faker->word(),
                 'message'           => $faker->paragraphs(rand(1, 10), true),
-                'guest_name'        => $names->random(),
-                'guest_last_name'   => $last_names->random(),
+                'guest_name'        => $faker->firstName,
+                'guest_last_name' => $faker->lastName,
                 'guest_email'       => $faker->email(),
             ]);
         }

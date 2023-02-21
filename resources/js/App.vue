@@ -1,14 +1,28 @@
 <template>
-    <div class="container">
-        <router-view></router-view>
+    <div>
+        <header class="sticky-top">
+            <NavBar />
+        </header>
+        <main>
+            <div class="container">
+                <router-view></router-view>
+            </div>
+        </main>
+        <footer>
+
+        </footer>
     </div>
 </template>
 
 <script>
-
+import NavBar from './components/NavBar'
 
 export default {
-name: 'App',
+    name: 'App',
+
+    components: {
+        NavBar,
+    },
 }
 </script>
 

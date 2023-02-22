@@ -22,8 +22,8 @@
                 required
             >
             <div class="invalid-feedback">
-                <ul v-if="errors && errors.name">
-                    <li v-for="error in errors.name" :key="error">
+                <ul v-if="errors && errors.guest_name">
+                    <li v-for="error in errors.guest_name" :key="error">
                         {{ error }}
                     </li>
                 </ul>
@@ -51,7 +51,7 @@
         </div>
 
         <div class="mb-3">
-            <label for="guest_email" class="form-label">guest_Email</label>
+            <label for="guest_email" class="form-label">Email</label>
             <input
                 type="guest_email"
                 class="form-control"
@@ -154,6 +154,7 @@ export default {
                         window.location.replace(response.data.redirect);
                         // metodo JS per una redirect immediata sfruttando i dati che ci ha inviato il controller in formato JSON
                     } else {
+                        console.log(response.data.errors);
                         this.errors = response.data.errors;
                     }
                 });

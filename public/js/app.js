@@ -5185,6 +5185,7 @@ __webpack_require__.r(__webpack_exports__);
           window.location.replace(response.data.redirect);
           // metodo JS per una redirect immediata sfruttando i dati che ci ha inviato il controller in formato JSON
         } else {
+          console.log(response.data.errors);
           _this.errors = response.data.errors;
         }
       });
@@ -5215,18 +5216,57 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['id'],
   data: function data() {
     return {
-      objDoc: null
+      objDoc: null,
+      errors: null,
+      docId: '',
+      guest_name: '',
+      guest_last_name: '',
+      vote: '',
+      text: ''
     };
   },
+  props: ['id'],
+  methods: {
+    // reset() {
+    //     this.guest_name = '';
+    //     this.guest_last_guest_name = '';
+    //     this.guest_email = '';
+    //     this.newsletter = '';
+    //     this.message = '';
+    // },
+    submitData: function submitData() {
+      var _this = this;
+      this.errors = null;
+      axios.post('/api/users/' + this.id + '/review', {
+        user_id: this.id,
+        guest_name: this.guest_name,
+        guest_last_name: this.guest_last_name,
+        vote: this.vote,
+        text: this.text
+      }).then(function (response) {
+        // console.log(response.data)
+        // console.log(this.id);
+        if (response.data.success) {
+          // this.resetForm();
+          console.log(response.data);
+          window.location.replace(response.data.redirect);
+          // metodo JS per una redirect immediata sfruttando i dati che ci ha inviato il controller in formato JSON
+        } else {
+          // console.log(response.data.errors);
+          _this.errors = response.data.errors;
+        }
+      });
+    }
+  },
   created: function created() {
-    var _this = this;
+    var _this2 = this;
+    this.docId = this.id;
     console.log(this.id);
     axios.get('/api/users/' + this.id).then(function (response) {
       //da implementare controllo esistenza pagina/valore della prop per la 404
-      _this.objDoc = response.data.results;
+      _this2.objDoc = response.data.results;
     });
   }
 });
@@ -5531,7 +5571,7 @@ var render = function render() {
     }
   }), _vm._v(" "), _c("div", {
     staticClass: "invalid-feedback"
-  }, [_vm.errors && _vm.errors.name ? _c("ul", _vm._l(_vm.errors.name, function (error) {
+  }, [_vm.errors && _vm.errors.guest_name ? _c("ul", _vm._l(_vm.errors.guest_name, function (error) {
     return _c("li", {
       key: error
     }, [_vm._v("\n                    " + _vm._s(error) + "\n                ")]);
@@ -5581,7 +5621,7 @@ var render = function render() {
     attrs: {
       "for": "guest_email"
     }
-  }, [_vm._v("guest_Email")]), _vm._v(" "), _c("input", {
+  }, [_vm._v("Email")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -5724,9 +5764,206 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _vm.objDoc ? _c("div", [_c("h1", [_vm._v("Lascia una recensione per il Dr." + _vm._s(_vm.objDoc.name + _vm.objDoc.last_name))])]) : _vm._e();
+  return _vm.objDoc ? _c("div", [_c("h1", [_vm._v("Lascia una recensione per il Dr." + _vm._s(_vm.objDoc.name + _vm.objDoc.last_name))]), _vm._v(" "), _c("form", {
+    staticClass: "row g-3 needs-validation",
+    attrs: {
+      action: "/api/users/".concat(_vm.id, "/review"),
+      method: "post"
+    },
+    on: {
+      submit: function submit($event) {
+        $event.preventDefault();
+        return _vm.submitData.apply(null, arguments);
+      }
+    }
+  }, [_c("input", {
+    attrs: {
+      type: "hidden",
+      name: "user_id",
+      id: "user_id"
+    },
+    domProps: {
+      value: _vm.id
+    }
+  }), _vm._v(" "), _c("div", {
+    staticClass: "mb-3"
+  }, [_c("label", {
+    staticClass: "form-label",
+    attrs: {
+      "for": "guest_name"
+    }
+  }, [_vm._v("Nome")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.guest_name,
+      expression: "guest_name"
+    }],
+    staticClass: "form-control",
+    "class": {
+      "is-invalid": _vm.errors && _vm.errors.guest_name
+    },
+    attrs: {
+      type: "text",
+      id: "guest_name",
+      name: "guest_name"
+    },
+    domProps: {
+      value: _vm.guest_name
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.guest_name = $event.target.value;
+      }
+    }
+  }), _vm._v(" "), _c("div", {
+    staticClass: "invalid-feedback"
+  }, [_vm.errors && _vm.errors.guest_name ? _c("ul", _vm._l(_vm.errors.guest_name, function (error) {
+    return _c("li", {
+      key: error
+    }, [_vm._v("\n                    " + _vm._s(error) + "\n                ")]);
+  }), 0) : _vm._e()])]), _vm._v(" "), _c("div", {
+    staticClass: "mb-3"
+  }, [_c("label", {
+    staticClass: "form-label",
+    attrs: {
+      "for": "guest_last_name"
+    }
+  }, [_vm._v("Cognome")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.guest_last_name,
+      expression: "guest_last_name"
+    }],
+    staticClass: "form-control",
+    "class": {
+      "is-invalid": _vm.errors && _vm.errors.guest_last_name
+    },
+    attrs: {
+      type: "text",
+      id: "guest_last_name",
+      name: "guest_last_name"
+    },
+    domProps: {
+      value: _vm.guest_last_name
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.guest_last_name = $event.target.value;
+      }
+    }
+  }), _vm._v(" "), _c("div", {
+    staticClass: "invalid-feedback"
+  }, [_vm.errors && _vm.errors.guest_last_name ? _c("ul", _vm._l(_vm.errors.guest_last_name, function (error) {
+    return _c("li", {
+      key: error
+    }, [_vm._v("\n                    " + _vm._s(error) + "\n                ")]);
+  }), 0) : _vm._e()])]), _vm._v(" "), _c("div", {
+    staticClass: "form-group row"
+  }, [_c("label", {
+    staticClass: "col-md-4 col-form-label text-md-right",
+    attrs: {
+      "for": "vote"
+    }
+  }, [_vm._v("Voto")]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-6"
+  }, [_c("select", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.vote,
+      expression: "vote"
+    }],
+    staticClass: "form-select",
+    "class": {
+      "is-invalid": _vm.errors && _vm.errors.vote
+    },
+    attrs: {
+      name: "vote",
+      "aria-label": "Default select example"
+    },
+    on: {
+      change: function change($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+        _vm.vote = $event.target.multiple ? $$selectedVal : $$selectedVal[0];
+      }
+    }
+  }, [_c("option", {
+    attrs: {
+      value: ""
+    }
+  }, [_vm._v("Open this select menu")]), _vm._v(" "), _vm._l(5, function (num) {
+    return _c("option", {
+      key: num,
+      domProps: {
+        value: num
+      }
+    }, [_vm._v(_vm._s(num))]);
+  })], 2), _vm._v(" "), _c("div", {
+    staticClass: "invalid-feedback"
+  }, [_vm.errors && _vm.errors.vote ? _c("ul", _vm._l(_vm.errors.vote, function (error) {
+    return _c("li", {
+      key: error
+    }, [_vm._v("\n                    " + _vm._s(error) + "\n                ")]);
+  }), 0) : _vm._e()])])]), _vm._v(" "), _c("div", {
+    staticClass: "mb-3"
+  }, [_c("label", {
+    staticClass: "form-label",
+    attrs: {
+      "for": "text"
+    }
+  }, [_vm._v("Scrivi una recensione")]), _vm._v(" "), _c("textarea", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.text,
+      expression: "text"
+    }],
+    staticClass: "form-control",
+    "class": {
+      "is-invalid": _vm.errors && _vm.errors.text
+    },
+    attrs: {
+      id: "text",
+      name: "text"
+    },
+    domProps: {
+      value: _vm.text
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.text = $event.target.value;
+      }
+    }
+  }), _vm._v(" "), _c("div", {
+    staticClass: "invalid-feedback"
+  }, [_vm.errors && _vm.errors.text ? _c("ul", _vm._l(_vm.errors.text, function (error) {
+    return _c("li", {
+      key: error
+    }, [_vm._v("\n                    " + _vm._s(error) + "\n                ")]);
+  }), 0) : _vm._e()])]), _vm._v(" "), _vm._m(0)])]) : _vm._e();
 };
-var staticRenderFns = [];
+var staticRenderFns = [function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
+    staticClass: "col-12"
+  }, [_c("button", {
+    staticClass: "btn btn-primary",
+    attrs: {
+      type: "submit"
+    }
+  }, [_vm._v("Invia")])]);
+}];
 render._withStripped = true;
 
 

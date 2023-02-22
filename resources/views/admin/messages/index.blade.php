@@ -7,38 +7,40 @@
         </div>
     @endif
 
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Titolo</th>
-                <th scope="col">Nome</th>
-                <th scope="col">Cognome</th>
-                <th scope="col">Azioni</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($messages as $message)
+    <div class="table-responsive">
+        <table class="table table-striped table-sm">
+            <thead>
                 <tr>
-                    <th scope="row">{{ $message->id }}</th>
-                    <td>{{ $message->title }}</td>
-                    <td>{{ $message->guest_name }}</td>
-                    <td>{{ $message->guest_last_name}}</td>
-                    <td>
-                        <a href="{{ route('admin.messages.show', ['message' => $message]) }}" class="btn btn-primary">Visualizza</a>
-                    </td>
-
-                    <td>
-                        <form action="{{ route('admin.messages.destroy', ['message' => $message]) }}" method="post">
-                            @method('DELETE')
-                            @csrf
-                            <button class="btn btn-danger btn-delete-me">Elimina</button>
-                        </form>
-                    </td>
+                    <th scope="col">ID</th>
+                    <th scope="col">Titolo</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Cognome</th>
+                    <th scope="col">Azioni</th>
                 </tr>
-            @endforeach
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach ($messages as $message)
+                    <tr>
+                        <th scope="row">{{ $message->id }}</th>
+                        <td>{{ $message->title }}</td>
+                        <td>{{ $message->guest_name }}</td>
+                        <td>{{ $message->guest_last_name}}</td>
+                        <td>
+                            <a href="{{ route('admin.messages.show', ['message' => $message]) }}" class="btn btn-primary">Visualizza</a>
+                        </td>
+
+                        <td>
+                            <form action="{{ route('admin.messages.destroy', ['message' => $message]) }}" method="post">
+                                @method('DELETE')
+                                @csrf
+                                <button class="btn btn-danger btn-delete-me">Elimina</button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 
         {{ $messages->links() }}
 @endsection

@@ -5385,7 +5385,7 @@ var render = function render() {
   }, [_c("ul", {
     staticClass: "navbar-nav me-auto mb-2 mb-lg-0 w-100"
   }, [_c("li", {
-    staticClass: "nav-item list-unstyled mx-auto ms-md-auto me-md-0"
+    staticClass: "nav-item list-unstyled mx-auto me-md-0"
   }, [_c("router-link", {
     staticClass: "btn btn-light",
     attrs: {

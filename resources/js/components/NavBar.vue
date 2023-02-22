@@ -7,7 +7,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100">
-                    <li class="nav-item list-unstyled mx-auto ms-md-auto me-md-0">
+                    <li class="nav-item list-unstyled mx-auto me-md-0">
                         <router-link :to="{name:'pageSearchDoctors'}" class="btn btn-light">
                             Ricerca Avanzata
                         </router-link>

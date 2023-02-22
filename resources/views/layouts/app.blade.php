@@ -77,7 +77,7 @@
                                             </a>
                                         </div>
                                     </li>
-                                    <li class="nav-item list-unstyled mx-auto ms-md-auto me-md-0">
+                                    <li class="nav-item list-unstyled mx-auto me-md-0">
                                         <a class="btn btn-primary text-light fw-bold" href="{{ route('admin.sponsors.index') }}">DIVENTA PREMIUM</a>
                                     </li>
                                 </div>

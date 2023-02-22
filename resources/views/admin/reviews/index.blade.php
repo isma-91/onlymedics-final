@@ -1,13 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-    <table class="table table-striped">
+    <div class="table-responsive">
+    <table class="table table-striped table-sm">
         <thead>
             <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Nome</th>
                 <th scope="col">Cognome</th>
-                <th scope="col">Recensione</th>
+                <th scope="col" class="d-none d-md-table-cell">Recensione</th>
                 <th scope="col">Voto</th>
                 <th scope="col">Visualizza</th>
                 {{-- <th scope="col">Azioni</th> --}}
@@ -31,7 +32,7 @@
                                 {{ $review->guest_last_name}}
                             </div>
                         </td>
-                        <td class="text-truncate review-message">
+                        <td class="text-truncate review-message d-none d-md-table-cell">
 
                                 {{ $review->text}}
 
@@ -50,6 +51,7 @@
             @endforeach
         </tbody>
     </table>
+    </div>
     {{ $reviews->links() }}
 @endsection
 

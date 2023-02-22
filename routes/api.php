@@ -25,6 +25,6 @@ Route::get('/users/search', 'Api\UserController@search')->name('users.search');
 // PAGINA SHOW DEL SINGOLO DOTTORE (PageDoctor)
 Route::get('/users/{user}', 'Api\UserController@show')->name('users.show');
 // PAGINA PER INVIARE MESSAGGIO A DOTTORE SPECIFICO (PageMessage)
-Route::get('/users/{user}/message', 'Api\MessageController@store')->name('messages.store');
+Route::post('/users/{user}/message', 'Api\MessageController@store')->name('messages.store');
 // PAGINA SCRIVERE RECENSIONE A DOTTORE SPECIFICO (PageReview)
-Route::get('/users/{user}/review', 'Api\ReviewController@store')->name('reviews.store');
+Route::post('/users/{user}/review', 'Api\ReviewController@store')->name('reviews.store');

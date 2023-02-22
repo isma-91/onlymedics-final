@@ -10,6 +10,7 @@ import PageSearchDoctors from './pages/PageSearchDoctors';
 import PageDoctor from './pages/PageDoctor';
 import PageMessage from './pages/PageMessage';
 import PageReview from './pages/PageReview';
+import PageSuccess from './pages/PageSuccess';
 
 
 Vue.use(VueRouter);
@@ -42,6 +43,11 @@ const routes = [
         name: "reviewToDoc",
         component: PageReview,
         props: true,
+    },
+    {
+        path: "/success",
+        name: "pageSuccess",
+        component: PageSuccess,
     },
 ];
 

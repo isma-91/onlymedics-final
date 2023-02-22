@@ -1,10 +1,12 @@
 Cose da fare:
-è possibile fare il login front-office?
-----------------------------------------------------------------------
-per fare la pagination ricordarsi che cambia la risposta axios e si devono cambiare le chiavi sulle quali abbiamo iterato in pagina
-====================================================================================
-DOMANDE:
 
-Non è possibile modificare il value per simulare un errore dall'inspector? 
+per fare la pagination ricordarsi che cambia la risposta axios e si devono cambiare le chiavi sulle quali abbiamo iterato in pagina
+--------------------------------------------------------------------------------------
+dare priorità a un immagine piuttosto che ad un altra per le cards dei medici e per il profilo specifico.
+======================================================================================
+DOMANDE:
+è possibile fare il login front-office?
 -------------------------------------------------------------------------------------
-perchè così funziona, ma come ha fatto Henri (molto più semplice e comprensibile), non funziona?
+Non è possibile modificare il value del voto nelle review per simulare un errore dall'inspector? 
+-------------------------------------------------------------------------------------
+perchè così funziona, ma come ha fatto Henri (molto più semplice e comprensibile), non funziona? (richiesta fatta dal controller UserController@show lato API)

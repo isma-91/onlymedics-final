@@ -5122,17 +5122,31 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      arrDoctors: null
+      results: null
     };
   },
+  // created() {
+  //     axios.get('/api/users')
+  //         .then(response => {
+  //             console.log(response)
+  //             this.results = response.data.results;
+  //     })
+  //         .catch(error => {
+  //             console.log(error);
+  //         });
+  //     },
+  methods: {
+    changePage: function changePage(page) {
+      var _this = this;
+      this.isLoading = true;
+      axios.get('/api/users?page=' + page).then(function (response) {
+        _this.results = response.data.results;
+        _this.isLoading = false;
+      });
+    }
+  },
   created: function created() {
-    var _this = this;
-    axios.get('/api/users').then(function (response) {
-      console.log(response);
-      _this.arrDoctors = response.data.results;
-    })["catch"](function (error) {
-      console.log(error);
-    });
+    this.changePage(1);
   }
 });
 
@@ -5472,7 +5486,7 @@ var render = function render() {
     staticClass: "text-center"
   }, [_vm._v("Benvenuto su Only Doctors")]), _vm._v(" "), _c("h2", {
     staticClass: "text-center"
-  }, [_vm._v("Medici in evidenza")]), _vm._v(" "), _vm._l(_vm.arrDoctors, function (doctor) {
+  }, [_vm._v("Medici in evidenza")]), _vm._v(" "), _vm.results ? _c("div", [_vm._l(_vm.results.data, function (doctor) {
     return _c("div", {
       key: doctor.id,
       staticClass: "tile"
@@ -5491,7 +5505,62 @@ var render = function render() {
         alt: doctor.name
       }
     })])], 1);
-  })], 2);
+  }), _vm._v(" "), _c("nav", {
+    staticClass: "mt-4"
+  }, [_c("ul", {
+    staticClass: "pagination"
+  }, [_c("li", {
+    staticClass: "page-item",
+    "class": {
+      disabled: _vm.results.current_page == 1
+    }
+  }, [_c("a", {
+    staticClass: "page-link",
+    attrs: {
+      href: ""
+    },
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.changePage(_vm.results.current_page - 1);
+      }
+    }
+  }, [_vm._v("Previous")])]), _vm._v(" "), _vm._l(_vm.results.last_page, function (page) {
+    return _c("li", {
+      key: page,
+      staticClass: "page-item",
+      "class": {
+        active: _vm.results.current_page == page
+      }
+    }, [_c("a", {
+      staticClass: "page-link",
+      attrs: {
+        href: ""
+      },
+      on: {
+        click: function click($event) {
+          $event.preventDefault();
+          return _vm.changePage(page);
+        }
+      }
+    }, [_vm._v(_vm._s(page))])]);
+  }), _vm._v(" "), _c("li", {
+    staticClass: "page-item",
+    "class": {
+      disabled: _vm.results.current_page == _vm.results.last_page
+    }
+  }, [_c("a", {
+    staticClass: "page-link",
+    attrs: {
+      href: ""
+    },
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.changePage(_vm.results.current_page + 1);
+      }
+    }
+  }, [_vm._v("Next")])])], 2)])], 2) : _vm._e()]);
 };
 var staticRenderFns = [];
 render._withStripped = true;

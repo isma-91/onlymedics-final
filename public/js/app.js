@@ -5701,7 +5701,7 @@ var render = function render() {
       "is-invalid": _vm.errors && _vm.errors.guest_email
     },
     attrs: {
-      type: "guest_email",
+      type: "email",
       id: "guest_email",
       name: "guest_email",
       required: ""

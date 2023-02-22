@@ -53,7 +53,7 @@
         <div class="mb-3">
             <label for="guest_email" class="form-label">Email</label>
             <input
-                type="guest_email"
+                type="email"
                 class="form-control"
                 :class="{'is-invalid': errors && errors.guest_email}"
                 id="guest_email"

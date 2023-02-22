@@ -20,11 +20,20 @@ class UserController extends Controller
         ]);
     }
 
-    public function show(User $user)
+    public function show($user)
     {
-        return response()->json([
-            'success' => true,
-            'results' => $user,
-        ]);
+        //perchè così funziona, ma come ha fatto Henri (molto più semplice e comprensibile), non funziona?
+        $user = User::where('id', $user)->with(['specializations'])->findOrFail($user);
+
+        if ($user) {
+            return response()->json([
+                'success' => true,
+                'results' => $user,
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+            ]);
+        }
     }
 }

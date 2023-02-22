@@ -5091,9 +5091,14 @@ __webpack_require__.r(__webpack_exports__);
       objDoc: null
     };
   },
+  methods: {
+    // fuffa(){
+    //     console.log(this.objDoc.specialization.name);
+    // }
+  },
   created: function created() {
     var _this = this;
-    console.log(this.id);
+    // console.log(this.objDoc);
     axios.get('/api/users/' + this.id).then(function (response) {
       //da implementare controllo esistenza pagina/valore della prop per la 404
       _this.objDoc = response.data.results;
@@ -5358,7 +5363,19 @@ var render = function render() {
         name: "home"
       }
     }
-  }, [_vm._v("OnlyDoctors")]), _vm._v(" "), _vm._m(0), _vm._v(" "), _vm._m(1)], 1)]);
+  }, [_vm._v("OnlyDoctors")]), _vm._v(" "), _vm._m(0), _vm._v(" "), _c("div", {
+    staticClass: "collapse navbar-collapse",
+    attrs: {
+      id: "navbarSupportedContent"
+    }
+  }, [_c("router-link", {
+    staticClass: "btn btn-light ms-auto",
+    attrs: {
+      to: {
+        name: "pageSearchDoctors"
+      }
+    }
+  }, [_vm._v("\n                Ricerca Avanzata\n            ")])], 1)], 1)]);
 };
 var staticRenderFns = [function () {
   var _vm = this,
@@ -5376,32 +5393,6 @@ var staticRenderFns = [function () {
   }, [_c("span", {
     staticClass: "navbar-toggler-icon"
   })]);
-}, function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("div", {
-    staticClass: "collapse navbar-collapse",
-    attrs: {
-      id: "navbarSupportedContent"
-    }
-  }, [_c("form", {
-    staticClass: "d-flex ms-auto",
-    attrs: {
-      role: "search"
-    }
-  }, [_c("input", {
-    staticClass: "form-control me-2",
-    attrs: {
-      type: "search",
-      placeholder: "Search",
-      "aria-label": "Search"
-    }
-  }), _vm._v(" "), _c("button", {
-    staticClass: "btn btn-outline-success",
-    attrs: {
-      type: "submit"
-    }
-  }, [_vm._v("Search")])])]);
 }];
 render._withStripped = true;
 
@@ -5423,7 +5414,11 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _vm.objDoc ? _c("div", [_c("h1", [_vm._v(_vm._s(_vm.objDoc.name + _vm.objDoc.last_name))]), _vm._v(" "), _c("img", {
+  return _vm.objDoc ? _c("div", [_c("h1", [_vm._v("Dr." + _vm._s(_vm.objDoc.name + " " + _vm.objDoc.last_name))]), _vm._v(" "), _c("h2", [_vm._v("Specializzato in:")]), _vm._v(" "), _c("ul", _vm._l(_vm.objDoc.specializations, function (spec) {
+    return _c("li", {
+      key: spec.id
+    }, [_vm._v(_vm._s(spec.name))]);
+  }), 0), _vm._v(" "), _c("img", {
     attrs: {
       src: _vm.objDoc.photo,
       alt: _vm.objDoc.name
@@ -5473,7 +5468,11 @@ var render = function render() {
     _c = _vm._self._c;
   return _c("div", {
     staticClass: "grid"
-  }, _vm._l(_vm.arrDoctors, function (doctor) {
+  }, [_c("h1", {
+    staticClass: "text-center"
+  }, [_vm._v("Benvenuto su Only Doctors")]), _vm._v(" "), _c("h2", {
+    staticClass: "text-center"
+  }, [_vm._v("Medici in evidenza")]), _vm._v(" "), _vm._l(_vm.arrDoctors, function (doctor) {
     return _c("div", {
       key: doctor.id,
       staticClass: "tile"
@@ -5492,7 +5491,7 @@ var render = function render() {
         alt: doctor.name
       }
     })])], 1);
-  }), 0);
+  })], 2);
 };
 var staticRenderFns = [];
 render._withStripped = true;
@@ -5515,7 +5514,7 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _vm.objDoc ? _c("div", [_c("h1", [_vm._v("Scrivi un messaggio al Dr." + _vm._s(_vm.objDoc.name + _vm.objDoc.last_name))]), _vm._v(" "), _c("form", {
+  return _vm.objDoc ? _c("div", [_c("h1", [_vm._v("Scrivi un messaggio al Dr." + _vm._s(_vm.objDoc.name + " " + _vm.objDoc.last_name))]), _vm._v(" "), _c("form", {
     staticClass: "row g-3 needs-validation",
     attrs: {
       action: "/api/users/".concat(_vm.id, "/message"),
@@ -5764,7 +5763,7 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _vm.objDoc ? _c("div", [_c("h1", [_vm._v("Lascia una recensione per il Dr." + _vm._s(_vm.objDoc.name + _vm.objDoc.last_name))]), _vm._v(" "), _c("form", {
+  return _vm.objDoc ? _c("div", [_c("h1", [_vm._v("Lascia una recensione per il Dr." + _vm._s(_vm.objDoc.name + " " + _vm.objDoc.last_name))]), _vm._v(" "), _c("form", {
     staticClass: "row g-3 needs-validation",
     attrs: {
       action: "/api/users/".concat(_vm.id, "/review"),
@@ -5989,7 +5988,7 @@ var render = function render() {
 var staticRenderFns = [function () {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("div", [_c("h1", [_vm._v("sono la pagina dei medici filtrati")])]);
+  return _c("div", [_c("h1", [_vm._v("sono la pagina per la ricerca dei medici ")])]);
 }];
 render._withStripped = true;
 
@@ -6065,7 +6064,7 @@ var routes = [{
   component: _pages_PageHome__WEBPACK_IMPORTED_MODULE_1__["default"]
 }, {
   path: "/users",
-  name: "pageDoctors",
+  name: "pageSearchDoctors",
   component: _pages_PageSearchDoctors__WEBPACK_IMPORTED_MODULE_2__["default"]
 }, {
   path: "/users/:id",

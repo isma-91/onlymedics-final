@@ -1,5 +1,7 @@
 <template>
     <div class="grid">
+        <h1 class="text-center">Benvenuto su Only Doctors</h1>
+        <h2 class="text-center">Medici in evidenza</h2>
         <div v-for="doctor in arrDoctors" :key="doctor.id" class="tile">
             <router-link :to="{name: 'pageDocProfile', params: {id: doctor.id}}">
                 <img :src="doctor.photo" :alt="doctor.name">

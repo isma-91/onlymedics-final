@@ -1,6 +1,6 @@
 <template >
     <div v-if="objDoc">
-        <h1>Scrivi un messaggio al Dr.{{objDoc.name +  objDoc.last_name}}</h1>
+        <h1>Scrivi un messaggio al Dr.{{objDoc.name + ' ' + objDoc.last_name}}</h1>
         <form
         :action="`/api/users/${id}/message`"
         method="post"

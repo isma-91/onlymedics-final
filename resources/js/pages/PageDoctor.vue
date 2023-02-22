@@ -1,6 +1,10 @@
 <template >
     <div v-if="objDoc">
-        <h1>{{objDoc.name + objDoc.last_name}}</h1>
+        <h1>Dr.{{objDoc.name + ' ' + objDoc.last_name}}</h1>
+        <h2>Specializzato in:</h2>
+        <ul>
+            <li v-for="spec in objDoc.specializations" :key="spec.id">{{ spec.name }}</li>
+        </ul>
         <img :src="objDoc.photo" :alt="objDoc.name">
         <!-- implementare controlli per i vari tipi di immagine (fotourl, foto importata, cv importato) -->
         <router-link :to="{name: 'msgToDoc', params: {id: objDoc.id}}" class="btn btn-primary">
@@ -23,9 +27,13 @@ export default {
             objDoc: null,
         }
     },
-
+    methods: {
+        // fuffa(){
+        //     console.log(this.objDoc.specialization.name);
+        // }
+    },
     created() {
-        console.log(this.id);
+        // console.log(this.objDoc);
         axios.get('/api/users/' + this.id)
         .then(response => {
             //da implementare controllo esistenza pagina/valore della prop per la 404

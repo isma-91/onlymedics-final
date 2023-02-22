@@ -23,7 +23,7 @@ const routes = [
     },
     {
         path: "/users",
-        name: "pageDoctors",
+        name: "pageSearchDoctors",
         component: PageSearchDoctors,
     },
     {

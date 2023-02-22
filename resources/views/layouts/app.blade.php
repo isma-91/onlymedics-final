@@ -31,13 +31,8 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
-
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav w-100">
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
@@ -82,11 +77,10 @@
                                             </a>
                                         </div>
                                     </li>
+                                    <li class="nav-item list-unstyled mx-auto ms-md-auto me-md-0">
+                                        <a class="btn btn-primary text-light fw-bold" href="{{ route('admin.sponsors.index') }}">DIVENTA PREMIUM</a>
+                                    </li>
                                 </div>
-                            </li>
-
-                            <li class="nav-item list-unstyled">
-                                <a class="btn btn-primary text-light fw-bold" href="{{ route('admin.sponsors.index') }}">DIVENTA PREMIUM</a>
                             </li>
                         @endguest
                     </ul>

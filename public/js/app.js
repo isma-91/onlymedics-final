@@ -5382,14 +5382,18 @@ var render = function render() {
     attrs: {
       id: "navbarSupportedContent"
     }
+  }, [_c("ul", {
+    staticClass: "navbar-nav me-auto mb-2 mb-lg-0 w-100"
+  }, [_c("li", {
+    staticClass: "nav-item list-unstyled mx-auto ms-md-auto me-md-0"
   }, [_c("router-link", {
-    staticClass: "btn btn-light ms-auto",
+    staticClass: "btn btn-light",
     attrs: {
       to: {
         name: "pageSearchDoctors"
       }
     }
-  }, [_vm._v("\n                Ricerca Avanzata\n            ")])], 1)], 1)]);
+  }, [_vm._v("\n                        Ricerca Avanzata\n                    ")])], 1)])])], 1)]);
 };
 var staticRenderFns = [function () {
   var _vm = this,

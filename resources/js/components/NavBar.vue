@@ -6,18 +6,18 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <!-- <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <router-link :to="{name: 'pageDoctor'}" class="nav-link">Doctor</router-link>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100">
+                    <li class="nav-item list-unstyled mx-auto ms-md-auto me-md-0">
+                        <router-link :to="{name:'pageSearchDoctors'}" class="btn btn-light">
+                            Ricerca Avanzata
+                        </router-link>
                     </li>
-                </ul> -->
+                </ul>
                 <!-- <form class="d-flex ms-auto" role="search">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form> -->
-                <router-link  :to="{name:'pageSearchDoctors'}" class="btn btn-light ms-auto">
-                    Ricerca Avanzata
-                </router-link>
+
             </div>
         </div>
     </nav>

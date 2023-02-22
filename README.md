@@ -10,3 +10,5 @@ DOMANDE:
 Non è possibile modificare il value del voto nelle review per simulare un errore dall'inspector? 
 -------------------------------------------------------------------------------------
 perchè così funziona, ma come ha fatto Henri (molto più semplice e comprensibile), non funziona? (richiesta fatta dal controller UserController@show lato API)
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+anche il backoffice va fatto responsive? perchè le tabelle bootstrap sono una merda

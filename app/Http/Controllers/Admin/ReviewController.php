@@ -13,7 +13,7 @@ class ReviewController extends Controller
     {
         $user = Auth::user();
         $reviews = Review::all();
-        $reviews = Review::where('user_id', Auth::id())->get();
+        $reviews = Review::where('user_id', Auth::id())->paginate(5);
 
 
         return view('admin.reviews.index', [

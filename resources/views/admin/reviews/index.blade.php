@@ -50,5 +50,6 @@
             @endforeach
         </tbody>
     </table>
+    {{ $reviews->links() }}
 @endsection
 

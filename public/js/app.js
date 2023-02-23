@@ -5386,14 +5386,19 @@ var render = function render() {
     staticClass: "navbar-nav me-auto mb-2 mb-lg-0 w-100"
   }, [_c("li", {
     staticClass: "nav-item list-unstyled mx-auto me-md-0"
-  }, [_c("router-link", {
+  }, [_c("div", [_c("router-link", {
     staticClass: "btn btn-light",
     attrs: {
       to: {
         name: "pageSearchDoctors"
       }
     }
-  }, [_vm._v("\n                        Ricerca Avanzata\n                    ")])], 1)])])], 1)]);
+  }, [_vm._v("\n                            Ricerca Avanzata\n                        ")]), _vm._v(" "), _c("a", {
+    staticClass: "btn btn-light",
+    attrs: {
+      href: "/admin"
+    }
+  }, [_vm._v("\n                            Dashboard Utente\n                        ")])], 1)])])])], 1)]);
 };
 var staticRenderFns = [function () {
   var _vm = this,

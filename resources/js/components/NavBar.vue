@@ -8,10 +8,17 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100">
                     <li class="nav-item list-unstyled mx-auto me-md-0">
-                        <router-link :to="{name:'pageSearchDoctors'}" class="btn btn-light">
-                            Ricerca Avanzata
-                        </router-link>
+                        <div>
+                            <router-link :to="{name:'pageSearchDoctors'}" class="btn btn-light">
+                                Ricerca Avanzata
+                            </router-link>
+                            <a href="/admin" class="btn btn-light">
+                                Dashboard Utente
+                            </a>
+                        </div>
+
                     </li>
+
                 </ul>
                 <!-- <form class="d-flex ms-auto" role="search">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">

@@ -5,7 +5,7 @@
         <ul>
             <li v-for="spec in objDoc.specializations" :key="spec.id">{{ spec.name }}</li>
         </ul>
-        <img :src="objDoc.photo" :alt="objDoc.name">
+        <img :src="objDoc.uploaded_photo ? '/storage/' + objDoc.uploaded_photo : objDoc.photo" :alt="objDoc.name">
         <!-- implementare controlli per i vari tipi di immagine (fotourl, foto importata, cv importato) -->
         <router-link :to="{name: 'msgToDoc', params: {id: objDoc.id}}" class="btn btn-primary">
             Invia un Messaggio

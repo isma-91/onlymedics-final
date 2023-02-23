@@ -21,7 +21,7 @@ class UserController extends Controller
         'specializations.*'   => 'integer|exists:specializations,id',
         'curriculum_vitae'    => 'nullable|image|max:1024',
         'photo'               => 'nullable|image|max:1024',
-        'phone'               => 'required|regex:/^[0-9]+$/|max:20',
+        'phone'               => 'nullable|regex:/^[0-9]+$/|max:20',
         'services'            => 'nullable|string',
     ];
 
@@ -43,7 +43,7 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         //validare
-        $this->validations['phone'] = Rule::unique('users')->ignore($user);
+        $this->validations['phone'] = Rule::unique('users')->where('phone', '<>', '')->ignore($user);
         $request->validate($this->validations);
         //salvare i dati
         $data = $request->all();

@@ -6,7 +6,7 @@
 
             <div v-for="doctor in results.data" :key="doctor.id" class="tile">
                 <router-link :to="{name: 'pageDocProfile', params: {id: doctor.id}}">
-                    <img :src="doctor.photo" :alt="doctor.name">
+                    <img :src="doctor.uploaded_photo ? '/storage/' + doctor.uploaded_photo : doctor.photo" :alt="doctor.name">
                 </router-link>
             </div>
 

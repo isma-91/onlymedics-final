@@ -5510,7 +5510,7 @@ var render = function render() {
       }
     }, [_c("img", {
       attrs: {
-        src: doctor.photo,
+        src: doctor.uploaded_photo ? "/storage/" + doctor.uploaded_photo : doctor.photo,
         alt: doctor.name
       }
     })])], 1);

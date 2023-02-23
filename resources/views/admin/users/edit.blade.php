@@ -76,22 +76,27 @@
         </div>
 
         <div class="mb-3">
-            <label for="photo" class="form-label">Immagine</label>
-            <input class="form-control @error('photo') is-invalid @enderror" type="file" id="photo" name="photo">
+            <label for="uploaded_photo" class="form-label">Immagine</label>
+            <input class="form-control @error('uploaded_photo') is-invalid @enderror" type="file" id="uploaded_photo" name="uploaded_photo"
+            value="{{old('uploaded_photo', 'storage/' . $user->uploaded_photo)}}">
             <div class="invalid-feedback">
-                @error('photo')
+                @error('uploaded_photo')
                     <ul>
-                        @foreach ($errors->get('photo') as $error)
+                        @foreach ($errors->get('uploaded_photo') as $error)
                             <li>{{ $error }}</li>
                         @endforeach
                     </ul>
                 @enderror
             </div>
+            <div>
+                <img src="{{ asset('storage/' . $user->uploaded_photo) }}" alt="{{ $user->name }}">
+            </div>
         </div>
 
         <div class="mb-3">
             <label for="curriculum_vitae" class="form-label">Curriculum vitae</label>
-            <input class="form-control @error('curriculum_vitae') is-invalid @enderror" type="file" id="curriculum_vitae" name="curriculum_vitae">
+            <input class="form-control @error('curriculum_vitae') is-invalid @enderror" type="file" id="curriculum_vitae" name="curriculum_vitae"
+            value="{{ old('curriculum_vitae', 'storage/' . $user->curriculum_vitae) }}">
             <div class="invalid-feedback">
                 @error('curriculum_vitae')
                     <ul>
@@ -100,6 +105,9 @@
                         @endforeach
                     </ul>
                 @enderror
+            </div>
+            <div>
+                <img src="{{ asset('storage/' . $user->curriculum_vitae) }}" alt="{{ $user->name }}">
             </div>
         </div>
 

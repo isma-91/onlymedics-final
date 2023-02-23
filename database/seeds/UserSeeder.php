@@ -30,6 +30,7 @@ class UserSeeder extends Seeder
                 'last_name'         => $name['last_name'],
                 'address'           => $faker->address(),
                 'curriculum_vitae'  => null,
+                'uploaded_photo'    => null,
                 'photo'             => 'https://picsum.photos/id/'. rand(0, 100) .'/500/400',
                 'phone'             => $faker->phoneNumber(),
                 'services'          => $faker->sentence(),

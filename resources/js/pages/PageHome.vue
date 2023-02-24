@@ -73,7 +73,7 @@ export default {
                     this.results = response.data.results;
                     this.isLoading = false;
                 });
-            }
+            },
         },
         created(){
             this.changePage(1);

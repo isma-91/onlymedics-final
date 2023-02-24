@@ -5329,6 +5329,19 @@ __webpack_require__.r(__webpack_exports__);
         _this.results = response.data.results;
         _this.isLoading = false;
       });
+    },
+    searchDoctors: function searchDoctors() {
+      var _this2 = this;
+      this.doctors = null; // reimposta i risultati a null prima di effettuare la ricerca
+      axios.get('/api/users/search', {
+        params: {
+          specialization: this.specialization
+        }
+      }).then(function (response) {
+        _this2.doctors = response.data.results;
+      })["catch"](function (error) {
+        console.log(error);
+      });
     }
   },
   created: function created() {
@@ -5416,7 +5429,7 @@ var render = function render() {
   }, [_c("ul", {
     staticClass: "navbar-nav me-auto mb-2 mb-lg-0 w-100"
   }, [_c("li", {
-    staticClass: "nav-item list-unstyled mx-auto me-md-0"
+    staticClass: "nav-item list-unstyled mx-auto me-md-0 mt-3 mt-md-0"
   }, [_c("div", [_c("router-link", {
     staticClass: "btn btn-light",
     attrs: {
@@ -6106,6 +6119,8 @@ var render = function render() {
     _c = _vm._self._c;
   return _c("div", {
     staticClass: "grid"
+  }, [_c("div", {
+    staticClass: "grid-int"
   }, [_c("input", {
     directives: [{
       name: "model",
@@ -6113,11 +6128,12 @@ var render = function render() {
       value: _vm.specialization,
       expression: "specialization"
     }],
+    staticClass: "col-10 py-2 text-center my-4",
     attrs: {
       type: "search",
       name: "doctorsearch",
       id: "doctorsearch",
-      placeholder: "Cerca il tuo medico"
+      placeholder: "Cerca"
     },
     domProps: {
       value: _vm.specialization
@@ -6133,12 +6149,9 @@ var render = function render() {
       }
     }
   }), _vm._v(" "), _c("button", {
-    staticClass: "btn btn-danger",
+    staticClass: "btn btn-danger col-1",
     on: {
-      keyup: function keyup($event) {
-        if (!$event.type.indexOf("key") && _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")) return null;
-        return _vm.searchDoctors.apply(null, arguments);
-      }
+      click: _vm.searchDoctors
     }
   }, [_c("svg", {
     staticClass: "bi bi-search",
@@ -6153,9 +6166,9 @@ var render = function render() {
     attrs: {
       d: "M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
     }
-  })])]), _vm._v(" "), _vm.results ? _c("div", [_c("div", {
+  })])])]), _vm._v(" "), _vm.doctors ? _c("div", [_c("div", {
     staticClass: "row g-3"
-  }, _vm._l(_vm.results.data, function (doctor) {
+  }, _vm._l(_vm.doctors, function (doctor) {
     return _c("div", {
       key: doctor.id,
       staticClass: "col-sm-6 col-md-4"
@@ -6184,7 +6197,7 @@ var render = function render() {
         }
       }
     }, [_vm._v("Visita")])], 1)])]);
-  }), 0)]) : _vm._e(), _vm._v(" "), _c("nav", {
+  }), 0), _vm._v(" "), _c("nav", {
     staticClass: "mt-4 d-flex justify-content-center"
   }, [_c("ul", {
     staticClass: "pagination"
@@ -6239,7 +6252,7 @@ var render = function render() {
         return _vm.changePage(_vm.results.current_page + 1);
       }
     }
-  }, [_vm._v("Next")])])], 2)])]);
+  }, [_vm._v("Next")])])], 2)])]) : _vm._e()]);
 };
 var staticRenderFns = [];
 render._withStripped = true;
@@ -11659,7 +11672,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".img-size[data-v-7da4a964] {\n  max-width: 420px;\n  max-height: 325px;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".grid[data-v-7da4a964] {\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n}\n.img-size[data-v-7da4a964] {\n  max-width: 420px;\n  max-height: 325px;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

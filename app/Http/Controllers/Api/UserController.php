@@ -23,11 +23,22 @@ class UserController extends Controller
 
     public function search(Request $request)
     {
+        $query = User::query();
+            // Verifica se è stata fornita una specializzazione
+        if ($request->has('specialization')) {
+            $specialization = $request->input('specialization');
+            // Filtra i dottori in base alla specializzazione
+            $query->whereHas('specializations', function($q) use ($specialization) {
+                $q->where('name', $specialization);
+            });
+        }
         // Recupera tutti i dottori con le rispettive specializzazioni
-        $doctors = User::with('specializations')->get();
-
+        $doctors = $query->with('specializations')->get();
         // Restituisci i dati in formato JSON
-        return response()->json($doctors);
+        return response()->json([
+            'success' => true,
+            'results' => $doctors
+        ]);
     }
 
     public function show($user)

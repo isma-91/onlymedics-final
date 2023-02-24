@@ -5556,14 +5556,16 @@ var render = function render() {
       key: doctor.id,
       staticClass: "col-sm-6 col-md-4"
     }, [_c("div", {
-      staticClass: "card h-100 overflow-hidden"
+      staticClass: "card h-100"
+    }, [_c("div", {
+      staticClass: "img-container"
     }, [_c("img", {
       staticClass: "img-size",
       attrs: {
         src: doctor.uploaded_photo ? "/storage/" + doctor.uploaded_photo : doctor.photo,
         alt: doctor.name
       }
-    }), _vm._v(" "), _c("div", {
+    })]), _vm._v(" "), _c("div", {
       staticClass: "card-body d-flex flex-column"
     }, [_c("h5", {
       staticClass: "card-title"
@@ -6130,7 +6132,7 @@ var render = function render() {
   return _c("div", {
     staticClass: "grid"
   }, [_c("div", {
-    staticClass: "grid-int"
+    staticClass: "grid-int d-flex justify-content-center align-items-center"
   }, [_c("input", {
     directives: [{
       name: "model",
@@ -6143,7 +6145,7 @@ var render = function render() {
       type: "search",
       name: "doctorsearch",
       id: "doctorsearch",
-      placeholder: "Cerca"
+      placeholder: "Ricerca per specializzazione"
     },
     domProps: {
       value: _vm.specialization
@@ -6156,7 +6158,7 @@ var render = function render() {
       }
     }
   }), _vm._v(" "), _c("button", {
-    staticClass: "btn btn-danger col-1",
+    staticClass: "btn btn-danger col-1 ms-2",
     on: {
       click: _vm.searchDoctors
     }
@@ -11686,7 +11688,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".img-size[data-v-13e03f97] {\n  max-width: 420px;\n  max-height: 235px;\n  -o-object-fit: cover;\n     object-fit: cover;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".img-size[data-v-13e03f97] {\n  width: 100%;\n  height: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n  -o-object-position: center;\n     object-position: center;\n}\n.img-container[data-v-13e03f97] {\n  margin: auto;\n  width: 70%;\n  height: 300px;\n  border-radius: 100%;\n  overflow: hidden;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -11710,7 +11712,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".grid[data-v-7da4a964] {\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n}\n.img-size[data-v-7da4a964] {\n  max-width: 420px;\n  max-height: 325px;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".grid[data-v-7da4a964] {\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n}\n.img-size[data-v-7da4a964] {\n  max-height: 285px;\n  -o-object-fit: cover;\n     object-fit: cover;\n  -o-object-position: center;\n     object-position: center;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

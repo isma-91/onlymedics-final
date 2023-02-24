@@ -5,8 +5,10 @@
         <div v-if="results">
             <div class="row g-3">
                 <div  v-for="doctor in results.data" :key="doctor.id" class="col-sm-6 col-md-4">
-                    <div class="card h-100 overflow-hidden">
-                        <img :src="doctor.uploaded_photo ? '/storage/' + doctor.uploaded_photo : doctor.photo" :alt="doctor.name" class="img-size">
+                    <div class="card h-100">
+                        <div class="img-container">
+                            <img :src="doctor.uploaded_photo ? '/storage/' + doctor.uploaded_photo : doctor.photo" :alt="doctor.name" class="img-size">
+                        </div>
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title">{{ doctor.name + ' ' + doctor.last_name}}</h5>
                             <p class="card-text h-100">{{ doctor.services }}</p>
@@ -84,8 +86,17 @@ export default {
 
 <style lang="scss" scoped>
     .img-size {
-        max-width: 420px;
-        max-height: 235px;
+        width: 100%;
+        height: 100%;
         object-fit: cover;
+        object-position: center;
+    }
+
+    .img-container{
+        margin: auto;
+        width: 70%;
+        height: 300px;
+        border-radius: 100%;
+        overflow: hidden;
     }
 </style>

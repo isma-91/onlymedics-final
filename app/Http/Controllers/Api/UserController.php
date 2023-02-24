@@ -29,7 +29,7 @@ class UserController extends Controller
             $specialization = $request->input('specialization');
             // Filtra i dottori in base alla specializzazione
             $query->whereHas('specializations', function($q) use ($specialization) {
-                $q->where('name', $specialization);
+                $q->where('name','like', "%{$specialization}%");
             });
         }
         // Recupera tutti i dottori con le rispettive specializzazioni

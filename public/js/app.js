@@ -6139,10 +6139,7 @@ var render = function render() {
       value: _vm.specialization
     },
     on: {
-      keyup: function keyup($event) {
-        if (!$event.type.indexOf("key") && _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")) return null;
-        return _vm.searchDoctors.apply(null, arguments);
-      },
+      keyup: _vm.searchDoctors,
       input: function input($event) {
         if ($event.target.composing) return;
         _vm.specialization = $event.target.value;
@@ -6166,7 +6163,7 @@ var render = function render() {
     attrs: {
       d: "M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
     }
-  })])])]), _vm._v(" "), _vm.doctors ? _c("div", [_c("div", {
+  })])])]), _vm._v(" "), _vm.doctors && _vm.results ? _c("div", [_c("div", {
     staticClass: "row g-3"
   }, _vm._l(_vm.doctors, function (doctor) {
     return _c("div", {
@@ -6185,7 +6182,7 @@ var render = function render() {
     }, [_c("h5", {
       staticClass: "card-title"
     }, [_vm._v(_vm._s(doctor.name + " " + doctor.last_name))]), _vm._v(" "), _c("p", {
-      staticClass: "card-text"
+      staticClass: "card-text h-100"
     }, [_vm._v(_vm._s(doctor.services))]), _vm._v(" "), _c("router-link", {
       staticClass: "btn btn-primary",
       attrs: {

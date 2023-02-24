@@ -5,7 +5,7 @@
             type="search"
             class="col-10 py-2 text-center my-4"
             v-model="specialization"
-            @keyup.enter="searchDoctors"
+            @keyup="searchDoctors"
             name="doctorsearch"
             id="doctorsearch"
             placeholder="Cerca"
@@ -30,14 +30,14 @@
                 </div>
             </div>
         </div> -->
-        <div v-if="doctors">
+        <div v-if="doctors && results">
             <div class="row g-3">
                 <div  v-for="doctor in doctors" :key="doctor.id" class="col-sm-6 col-md-4">
                     <div class="card h-100">
                         <img :src="doctor.uploaded_photo ? '/storage/' + doctor.uploaded_photo : doctor.photo" :alt="doctor.name" class="img-size">
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title">{{ doctor.name + ' ' + doctor.last_name}}</h5>
-                            <p class="card-text">{{ doctor.services }}</p>
+                            <p class="card-text h-100">{{ doctor.services }}</p>
                             <router-link :to="{name: 'pageDocProfile', params: {id: doctor.id}}" class="btn btn-primary">Visita</router-link>
                         </div>
                     </div>
@@ -45,32 +45,32 @@
             </div>
             <!-- Pagination -->
             <nav class="mt-4 d-flex justify-content-center">
-            <ul class="pagination">
-                <li
-                    class="page-item"
-                    :class="{disabled: results.current_page == 1}"
-                >
-                    <a class="page-link" href="" @click.prevent="changePage(results.current_page - 1)">Previous</a>
-                </li>
+                <ul class="pagination">
+                    <li
+                        class="page-item"
+                        :class="{disabled: results.current_page == 1}"
+                    >
+                        <a class="page-link" href="" @click.prevent="changePage(results.current_page - 1)">Previous</a>
+                    </li>
 
-                <li
-                    v-for="page in results.last_page"
-                    :key="page"
-                    class="page-item"
-                    :class="{active: results.current_page == page}"
-                >
-                    <a class="page-link" href="" @click.prevent="changePage(page)">{{ page }}</a>
-                </li>
+                    <li
+                        v-for="page in results.last_page"
+                        :key="page"
+                        class="page-item"
+                        :class="{active: results.current_page == page}"
+                    >
+                        <a class="page-link" href="" @click.prevent="changePage(page)">{{ page }}</a>
+                    </li>
 
 
-                <li
-                    class="page-item"
-                    :class="{disabled: results.current_page == results.last_page}"
-                >
-                    <a class="page-link" href="" @click.prevent="changePage(results.current_page + 1)">Next</a>
-                </li>
-            </ul>
-        </nav>
+                    <li
+                        class="page-item"
+                        :class="{disabled: results.current_page == results.last_page}"
+                    >
+                        <a class="page-link" href="" @click.prevent="changePage(results.current_page + 1)">Next</a>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </div>
 </template>

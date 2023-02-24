@@ -9,7 +9,7 @@
                         <img :src="doctor.uploaded_photo ? '/storage/' + doctor.uploaded_photo : doctor.photo" :alt="doctor.name" class="img-size">
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title">{{ doctor.name + ' ' + doctor.last_name}}</h5>
-                            <p class="card-text">{{ doctor.services }}</p>
+                            <p class="card-text h-100">{{ doctor.services }}</p>
                             <router-link :to="{name: 'pageDocProfile', params: {id: doctor.id}}" class="btn btn-primary">Visita</router-link>
                         </div>
                     </div>

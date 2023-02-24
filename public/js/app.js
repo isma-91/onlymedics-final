@@ -5545,7 +5545,7 @@ var render = function render() {
     }, [_c("h5", {
       staticClass: "card-title"
     }, [_vm._v(_vm._s(doctor.name + " " + doctor.last_name))]), _vm._v(" "), _c("p", {
-      staticClass: "card-text"
+      staticClass: "card-text h-100"
     }, [_vm._v(_vm._s(doctor.services))]), _vm._v(" "), _c("router-link", {
       staticClass: "btn btn-primary",
       attrs: {

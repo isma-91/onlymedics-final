@@ -28,4 +28,7 @@ export default {
 
 <style lang="scss">
     @import '~bootstrap/scss/bootstrap';
+    ul{
+        list-style-type: none;
+    }
 </style>

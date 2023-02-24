@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\User;
+use App\Review;
 use App\Specialization;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -45,11 +46,15 @@ class UserController extends Controller
     {
         //perchè così funziona, ma come ha fatto Henri (molto più semplice e comprensibile), non funziona?
         $user = User::where('id', $user)->with(['specializations'])->findOrFail($user);
+        $reviews = Review::where('user_id', $user->id)->with('user')->get();
 
         if ($user) {
             return response()->json([
                 'success' => true,
-                'results' => $user,
+                'results' => [
+                    'user' => $user,
+                    'reviews' => $reviews
+                ]
             ]);
         } else {
             return response()->json([

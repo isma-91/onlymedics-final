@@ -18,10 +18,10 @@
         </ul> -->
             <h2>Recensioni:</h2>
             <ul>
-                <li v-for="review in results.reviews" :key="review.id">
+                <li v-for="review in results.reviews" :key="review.id" class="border border-dark my-2 p-3 rounded">
                 <p>{{ review.text }}</p>
                 <p>Valutazione: {{ review.vote }}</p>
-                <p>Data: {{ review.created_at }}</p>
+                <p>Data: {{ new Date(review.created_at).toLocaleDateString('it-IT') }}</p>
                 </li>
             </ul>
     </div>

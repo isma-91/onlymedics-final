@@ -16,23 +16,9 @@
                 </svg>
             </button>
         </div>
-        <!-- <div v-if="results">
+        <div v-if="results && !isFiltered">
             <div class="row g-3">
                 <div  v-for="doctor in results.data" :key="doctor.id" class="col-sm-6 col-md-4" >
-                    <div class="card h-100">
-                        <img :src="doctor.uploaded_photo ? '/storage/' + doctor.uploaded_photo : doctor.photo" :alt="doctor.name" class="img-size">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title">{{ doctor.name + ' ' + doctor.last_name}}</h5>
-                            <p class="card-text">{{ doctor.services }}</p>
-                            <router-link :to="{name: 'pageDocProfile', params: {id: doctor.id}}" class="btn btn-primary">Visita</router-link>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-        <div v-if="doctors && results">
-            <div class="row g-3">
-                <div  v-for="doctor in doctors" :key="doctor.id" class="col-sm-6 col-md-4">
                     <div class="card h-100">
                         <img :src="doctor.uploaded_photo ? '/storage/' + doctor.uploaded_photo : doctor.photo" :alt="doctor.name" class="img-size">
                         <div class="card-body d-flex flex-column">
@@ -43,7 +29,7 @@
                     </div>
                 </div>
             </div>
-            <!-- Pagination -->
+
             <nav class="mt-4 d-flex justify-content-center">
                 <ul class="pagination">
                     <li
@@ -72,6 +58,20 @@
                 </ul>
             </nav>
         </div>
+        <div v-if="isFiltered">
+            <div class="row g-3">
+                <div  v-for="doctor in doctors" :key="doctor.id" class="col-sm-6 col-md-4">
+                    <div class="card h-100">
+                        <img :src="doctor.uploaded_photo ? '/storage/' + doctor.uploaded_photo : doctor.photo" :alt="doctor.name" class="img-size">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">{{ doctor.name + ' ' + doctor.last_name}}</h5>
+                            <p class="card-text h-100">{{ doctor.services }}</p>
+                            <router-link :to="{name: 'pageDocProfile', params: {id: doctor.id}}" class="btn btn-primary">Visita</router-link>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -83,6 +83,7 @@ export default {
             results: null,
             doctors: [],
             specialization: '',
+            isFiltered: false,
         };
     },
     // created() {
@@ -106,6 +107,7 @@ export default {
             },
             searchDoctors() {
                 this.doctors = null;// reimposta i risultati a null prima di effettuare la ricerca
+                this.isFiltered =  true,
                 axios.get('/api/users/search', {
                     params: {
                         specialization: this.specialization,
@@ -115,6 +117,7 @@ export default {
                 }).catch(error => {
                     console.log(error);
                 });
+
             },
     },
     created(){

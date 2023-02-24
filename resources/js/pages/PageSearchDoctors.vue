@@ -17,9 +17,10 @@
             </button>
         </div>
         <div v-if="results && !isFiltered">
+            <h1>Tutti i medici</h1>
             <div class="row g-3">
                 <div  v-for="doctor in results.data" :key="doctor.id" class="col-sm-6 col-md-4" >
-                    <div class="card h-100">
+                    <div class="card h-100 overflow-hidden">
                         <img :src="doctor.uploaded_photo ? '/storage/' + doctor.uploaded_photo : doctor.photo" :alt="doctor.name" class="img-size">
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title">{{ doctor.name + ' ' + doctor.last_name}}</h5>
@@ -59,9 +60,10 @@
             </nav>
         </div>
         <div v-if="isFiltered">
+            <h1>Medici filtrati per: {{ this.specialization }}</h1>
             <div class="row g-3">
                 <div  v-for="doctor in doctors" :key="doctor.id" class="col-sm-6 col-md-4">
-                    <div class="card h-100">
+                    <div class="card h-100 overflow-hidden">
                         <img :src="doctor.uploaded_photo ? '/storage/' + doctor.uploaded_photo : doctor.photo" :alt="doctor.name" class="img-size">
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title">{{ doctor.name + ' ' + doctor.last_name}}</h5>
@@ -106,6 +108,7 @@ export default {
                 });
             },
             searchDoctors() {
+                if (this.specialization){
                 this.doctors = null;// reimposta i risultati a null prima di effettuare la ricerca
                 this.isFiltered =  true,
                 axios.get('/api/users/search', {
@@ -117,6 +120,9 @@ export default {
                 }).catch(error => {
                     console.log(error);
                 });
+            } else if (!this.specialization ){
+                this.isFiltered =  false;
+            }
 
             },
     },

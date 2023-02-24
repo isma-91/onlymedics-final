@@ -5333,16 +5333,20 @@ __webpack_require__.r(__webpack_exports__);
     },
     searchDoctors: function searchDoctors() {
       var _this2 = this;
-      this.doctors = null; // reimposta i risultati a null prima di effettuare la ricerca
-      this.isFiltered = true, axios.get('/api/users/search', {
-        params: {
-          specialization: this.specialization
-        }
-      }).then(function (response) {
-        _this2.doctors = response.data.results;
-      })["catch"](function (error) {
-        console.log(error);
-      });
+      if (this.specialization) {
+        this.doctors = null; // reimposta i risultati a null prima di effettuare la ricerca
+        this.isFiltered = true, axios.get('/api/users/search', {
+          params: {
+            specialization: this.specialization
+          }
+        }).then(function (response) {
+          _this2.doctors = response.data.results;
+        })["catch"](function (error) {
+          console.log(error);
+        });
+      } else if (!this.specialization) {
+        this.isFiltered = false;
+      }
     }
   },
   created: function created() {
@@ -5552,7 +5556,7 @@ var render = function render() {
       key: doctor.id,
       staticClass: "col-sm-6 col-md-4"
     }, [_c("div", {
-      staticClass: "card h-100"
+      staticClass: "card h-100 overflow-hidden"
     }, [_c("img", {
       staticClass: "img-size",
       attrs: {
@@ -6169,14 +6173,14 @@ var render = function render() {
     attrs: {
       d: "M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
     }
-  })])])]), _vm._v(" "), _vm.results && !_vm.isFiltered ? _c("div", [_c("div", {
+  })])])]), _vm._v(" "), _vm.results && !_vm.isFiltered ? _c("div", [_c("h1", [_vm._v("Tutti i medici")]), _vm._v(" "), _c("div", {
     staticClass: "row g-3"
   }, _vm._l(_vm.results.data, function (doctor) {
     return _c("div", {
       key: doctor.id,
       staticClass: "col-sm-6 col-md-4"
     }, [_c("div", {
-      staticClass: "card h-100"
+      staticClass: "card h-100 overflow-hidden"
     }, [_c("img", {
       staticClass: "img-size",
       attrs: {
@@ -6255,14 +6259,14 @@ var render = function render() {
         return _vm.changePage(_vm.results.current_page + 1);
       }
     }
-  }, [_vm._v("Next")])])], 2)])]) : _vm._e(), _vm._v(" "), _vm.isFiltered ? _c("div", [_c("div", {
+  }, [_vm._v("Next")])])], 2)])]) : _vm._e(), _vm._v(" "), _vm.isFiltered ? _c("div", [_c("h1", [_vm._v("Medici filtrati per: " + _vm._s(this.specialization))]), _vm._v(" "), _c("div", {
     staticClass: "row g-3"
   }, _vm._l(_vm.doctors, function (doctor) {
     return _c("div", {
       key: doctor.id,
       staticClass: "col-sm-6 col-md-4"
     }, [_c("div", {
-      staticClass: "card h-100"
+      staticClass: "card h-100 overflow-hidden"
     }, [_c("img", {
       staticClass: "img-size",
       attrs: {

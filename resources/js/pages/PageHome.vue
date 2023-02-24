@@ -5,7 +5,7 @@
         <div v-if="results">
             <div class="row g-3">
                 <div  v-for="doctor in results.data" :key="doctor.id" class="col-sm-6 col-md-4">
-                    <div class="card h-100">
+                    <div class="card h-100 overflow-hidden">
                         <img :src="doctor.uploaded_photo ? '/storage/' + doctor.uploaded_photo : doctor.photo" :alt="doctor.name" class="img-size">
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title">{{ doctor.name + ' ' + doctor.last_name}}</h5>

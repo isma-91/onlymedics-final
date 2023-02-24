@@ -7,10 +7,10 @@
         </ul>
         <img :src="results.user.uploaded_photo ? '/storage/' + results.user.uploaded_photo : results.user.photo" :alt="results.user.name">
         <!-- implementare controlli per i vari tipi di immagine (fotourl, foto importata, cv importato) -->
-        <router-link :to="{name: 'msgToresults', params: {id: results.user.id}}" class="btn btn-primary">
+        <router-link :to="{name: 'msgToDoc', params: {id: results.user.id}}" class="btn btn-primary">
             Invia un Messaggio
         </router-link>
-        <router-link :to="{name: 'reviewToresults', params: {id: results.user.id}}" class="btn btn-primary">
+        <router-link :to="{name: 'reviewToDoc', params: {id: results.user.id}}" class="btn btn-primary">
             Lascia una recensione
         </router-link>
         <!-- <ul>
@@ -18,14 +18,24 @@
         </ul> -->
             <h2>Recensioni:</h2>
             <ul>
-                <li v-for="review in results.reviews" :key="review.id" class="border border-dark my-2 p-3 rounded">
-                <p>{{ review.text }}</p>
-                <p>Valutazione: {{ review.vote }}</p>
-                <p>Data: {{ new Date(review.created_at).toLocaleDateString('it-IT') }}</p>
+                <li v-for="review in results.reviews" :key="review.id" class="border border-2 border-dark my-2 p-3 rounded bg-white">
+                    <h3>{{ review.guest_name + ' ' + review.guest_last_name}}</h3>
+                    <p>{{ review.text }}</p>
+                    <div class="d-flex fs-3">
+                        <p>Valutazione: </p>
+                        <div v-for="star in review.vote" :key="review.id" class="star-yellow">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <p>Data: {{ new Date(review.created_at).toLocaleDateString('it-IT') }}</p>
                 </li>
             </ul>
     </div>
-    <div v-else>Sto caricando i dati...</div>
+    <div v-else class="d-flex justify-content-center align-items-center middle">
+        <div class="progress"></div>
+    </div>
 </template>
 
 <script>
@@ -44,17 +54,43 @@ export default {
         // }
     },
     created() {
+        setTimeout(() => {
         axios.get('/api/users/' + this.id)
         .then(response => {
             //da implementare controllo esistenza pagina/valore della prop per la 404
             this.results = response.data.results;
             console.log(this.results);
-        })
+        })},1 * 1000 );
     }
 
 }
 </script>
 
-<style >
+<style lang="scss" scoped>
+    .star-yellow {
+        color: orange;
+    }
 
+    .progress {
+        width: 71.6px;
+        height: 71.6px;
+        background: linear-gradient(#3d1fcf 0 0) bottom/100% 0% no-repeat #f1f1f1;
+        -webkit-mask: radial-gradient(circle at 60% 65%, #000 62%, #0000 65%) top left,
+                radial-gradient(circle at 40% 65%, #000 62%, #0000 65%) top right,
+                linear-gradient(to bottom left, #000 42%,#0000 43%) bottom left ,
+                linear-gradient(to bottom right,#000 42%,#0000 43%) bottom right;
+        -webkit-mask-size: 50% 50%;
+        -webkit-mask-repeat: no-repeat;
+        animation: progress-ofy9at 1.2s infinite linear;
+    }
+
+    @keyframes progress-ofy9at {
+        90%, 100% {
+            background-size: 100% 100%;
+        }
+    }
+
+    .middle {
+        height: 90vh;
+    }
 </style>

@@ -9,7 +9,6 @@
             </div>
         </main>
         <footer>
-
         </footer>
     </div>
 </template>
@@ -33,5 +32,12 @@ export default {
         list-style-type: none;
         margin: 0;
         padding: 0;
+    }
+
+    body {
+        background-image: url('/img/bg-da-usare.jpg');
+        max-width: 100vw;
+        background-size: cover;
+        background-repeat: no-repeat;
     }
 </style>

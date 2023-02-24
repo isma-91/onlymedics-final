@@ -4,19 +4,19 @@
         <h2 class="text-center">Medici in evidenza</h2>
         <div v-if="results">
             <div class="row g-3">
-            <div  v-for="doctor in results.data" :key="doctor.id" class="col-sm-6 col-md-4">
-                <div class="card h-100">
-                    <img :src="doctor.uploaded_photo ? '/storage/' + doctor.uploaded_photo : doctor.photo" :alt="doctor.name" class="img-size">
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">{{ doctor.name + ' ' + doctor.last_name}}</h5>
-                        <p class="card-text">{{ doctor.services }}</p>
-                        <router-link :to="{name: 'pageDocProfile', params: {id: doctor.id}}" class="btn btn-primary">Visita</router-link>
+                <div  v-for="doctor in results.data" :key="doctor.id" class="col-sm-6 col-md-4">
+                    <div class="card h-100">
+                        <img :src="doctor.uploaded_photo ? '/storage/' + doctor.uploaded_photo : doctor.photo" :alt="doctor.name" class="img-size">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">{{ doctor.name + ' ' + doctor.last_name}}</h5>
+                            <p class="card-text">{{ doctor.services }}</p>
+                            <router-link :to="{name: 'pageDocProfile', params: {id: doctor.id}}" class="btn btn-primary">Visita</router-link>
+                        </div>
                     </div>
                 </div>
             </div>
-            </div>
-        </div>
-        <nav class="mt-4 d-flex justify-content-center">
+
+            <nav class="mt-4 d-flex justify-content-center">
                 <ul class="pagination">
                     <li
                         class="page-item"
@@ -43,6 +43,7 @@
                     </li>
                 </ul>
             </nav>
+        </div>
     </div>
 </template>
 

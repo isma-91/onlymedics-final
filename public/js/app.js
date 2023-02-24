@@ -5557,7 +5557,7 @@ var render = function render() {
         }
       }
     }, [_vm._v("Visita")])], 1)])]);
-  }), 0)]) : _vm._e(), _vm._v(" "), _c("nav", {
+  }), 0), _vm._v(" "), _c("nav", {
     staticClass: "mt-4 d-flex justify-content-center"
   }, [_c("ul", {
     staticClass: "pagination"
@@ -5612,7 +5612,7 @@ var render = function render() {
         return _vm.changePage(_vm.results.current_page + 1);
       }
     }
-  }, [_vm._v("Next")])])], 2)])]);
+  }, [_vm._v("Next")])])], 2)])]) : _vm._e()]);
 };
 var staticRenderFns = [];
 render._withStripped = true;

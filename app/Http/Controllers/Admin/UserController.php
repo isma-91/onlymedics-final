@@ -62,7 +62,6 @@ class UserController extends Controller
         // $cv =  $data['curriculum_vitae'] ?? null;
         // $image =  $data['uploaded_photo'] ?? null;
 
-        //
         // Verificare se l'utente ha caricato un'immagine
         if (isset($data['uploaded_photo'])) {
             // Salvare l'immagine e ottenere il percorso relativo
@@ -78,10 +77,10 @@ class UserController extends Controller
             // Salvare il curriculum vitae e ottenere il percorso relativo
             $cv = Storage::put('public/uploads', $data['curriculum_vitae']);
             $cv = isset($cv) ? str_replace('public/', '', $cv) : null;
-
             // Aggiornare il percorso del curriculum vitae dell'utente con quello appena salvato
             $user->curriculum_vitae = $cv;
         }
+
         $user->name             = $data['name'];
         $user->last_name        = $data['last_name'];
         $user->address          = $data['address'];

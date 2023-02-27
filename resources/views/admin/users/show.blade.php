@@ -14,7 +14,11 @@
     </div>
     <div class="container d-flex flex-column query_container">
         <div class="photo_container text-center">
-            <img src="{{ asset('storage/' . $user->uploaded_photo) }}" alt="{{ $user->name }}" class="mod-img border border-dark border-5">
+            @if ($user->uploaded_photo )
+                <img src="{{ asset('storage/' . $user->uploaded_photo)}}" alt="{{ $user->name }}" class="mod-img border border-dark border-5">
+            @else
+                <img src="{{ asset('img/dottore.jpg')}}" alt="{{ $user->name }}" class="mod-img border border-dark border-5">
+            @endif
         </div>
         <div class="container doctor_container">
             <div class="text-capitalize mb-2"><strong class="text-uppercase">nome:</strong> {{ $user->name }}</div>
@@ -29,8 +33,11 @@
                         <div class="me-1 mod_specialization mt-1">{{ $specialization->name }}</div>
                     @endforeach
             </div>
-            <div><strong class="text-uppercase mb-2">Il tuo cv</strong></div>
-            <div class="d-flex w-100 cv_container"><img src="{{ asset('storage/' . $user->curriculum_vitae) }}" alt="{{ $user->name }}" class="border border-dark border-5 rounded-2 mod-curriculum mt-2"></div>
+
+            @if ($user->curriculum_vitae)
+                <div><strong class="text-uppercase mb-2">Il tuo cv</strong></div>
+                <div class="d-flex w-100 cv_container"><img src="{{ asset('storage/' . $user->curriculum_vitae) }}" alt="{{ $user->name }}" class="border border-dark border-5 rounded-2 mod-curriculum mt-2"></div>
+            @endif
         </div>
         <div class="text-end mt-2">
             <a class="btn btn-primary px-4 py-2 fw-bold" href="{{ route('admin.users.edit', ['user' => $user])}}">Modifica il profilo</a>

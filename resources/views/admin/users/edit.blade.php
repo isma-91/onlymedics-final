@@ -89,7 +89,9 @@
                 @enderror
             </div>
             <div class="text-center mt-2">
-                <img src="{{ asset('storage/' . $user->uploaded_photo) }}" alt="{{ $user->name }}" class="mod-img border border-dark border-5">
+                @if ($user->uploaded_photo )
+                    <img src="{{ asset('storage/' . $user->uploaded_photo)}}" alt="{{ $user->name }}" class="mod-img border border-dark border-5">
+                @endif
             </div>
         </div>
 
@@ -107,7 +109,9 @@
                 @enderror
             </div>
             <div class="text-center mt-2">
-                <img src="{{ asset('storage/' . $user->curriculum_vitae) }}" alt="{{ $user->name }}" class="border border-dark border-5 rounded-2">
+                @if ($user->curriculum_vitae)
+                    <div class="d-flex w-100 cv_container"><img src="{{ asset('storage/' . $user->curriculum_vitae) }}" alt="{{ $user->name }}" class="border border-dark border-5 rounded-2 mod-curriculum mt-2"></div>
+                @endif
             </div>
         </div>
 

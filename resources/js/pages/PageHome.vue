@@ -96,14 +96,16 @@ export default {
         width: 300px;
         flex-grow: 1;
         font-size: 2rem;
+        margin: 1rem 0;
         .sponsor_content {
             display: flex;
             justify-content: center;
             align-items: center;
             background-color: aqua;
-            margin: 1rem 0;
             width: 100%;
             height: 100%;
+            border: 2px solid black;
+            border-radius: 1rem;
         }
     }
     .img-size {

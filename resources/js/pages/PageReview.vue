@@ -1,11 +1,12 @@
 <template >
     <div v-if="objDoc">
-        <h1>Lascia una recensione per il Dr.{{objDoc.name + ' ' + objDoc.last_name}}</h1>
+        <h1>Lascia una recensione per il Dr.{{objDoc.user.name + ' ' + objDoc.user.last_name}}</h1>
         <form
         :action="`/api/users/${id}/review`"
         method="post"
         class="row g-3 needs-validation"
         @submit.prevent="submitData"
+        @keyup.enter="submitData"
     >
 
 

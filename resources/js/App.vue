@@ -37,6 +37,7 @@ export default {
     body {
         background-image: url('/img/bg-da-usare.jpg');
         max-width: 100vw;
+        max-height: 100%;
         background-size: cover;
         background-repeat: no-repeat;
     }

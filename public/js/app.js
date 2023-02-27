@@ -5512,25 +5512,27 @@ var render = function render() {
       key: review.id,
       staticClass: "border border-2 border-dark my-2 p-3 rounded bg-white"
     }, [_c("h3", [_vm._v(_vm._s(review.guest_name + " " + review.guest_last_name))]), _vm._v(" "), _c("p", [_vm._v(_vm._s(review.text))]), _vm._v(" "), _c("div", {
-      staticClass: "d-flex fs-3"
-    }, [_c("p", [_vm._v("Valutazione: ")]), _vm._v(" "), _vm._l(review.vote, function (star) {
-      return _c("div", {
-        key: review.id,
-        staticClass: "star-yellow"
-      }, [_c("svg", {
-        staticClass: "bi bi-star-fill",
+      staticClass: "d-flex align-items-center center fs-3"
+    }, [_c("div", {
+      staticClass: "me-2"
+    }, [_vm._v("Valutazione:")]), _vm._v(" "), _vm._l(review.vote, function (star, index) {
+      return _c("svg", {
+        key: index,
+        staticClass: "bi bi-star-fill me-1",
         attrs: {
           xmlns: "http://www.w3.org/2000/svg",
-          width: "16",
-          height: "16",
-          fill: "currentColor",
-          viewBox: "0 0 16 16"
+          width: "25",
+          height: "25",
+          fill: "#FBB917",
+          viewBox: "0 0 16 16",
+          stroke: "black",
+          "stroke-width": ".5"
         }
       }, [_c("path", {
         attrs: {
           d: "M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
         }
-      })])]);
+      })]);
     })], 2), _vm._v(" "), _c("p", [_vm._v("Data: " + _vm._s(new Date(review.created_at).toLocaleDateString("it-IT")))])]);
   }), 0)], 1) : _c("div", {
     staticClass: "d-flex justify-content-center align-items-center middle"
@@ -11657,7 +11659,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".star-yellow[data-v-44ed53d7] {\n  color: orange;\n}\n.progress[data-v-44ed53d7] {\n  width: 71.6px;\n  height: 71.6px;\n  background: linear-gradient(#3d1fcf 0 0) bottom/100% 0% no-repeat #f1f1f1;\n  -webkit-mask: radial-gradient(circle at 60% 65%, #000 62%, rgba(0, 0, 0, 0) 65%) top left, radial-gradient(circle at 40% 65%, #000 62%, rgba(0, 0, 0, 0) 65%) top right, linear-gradient(to bottom left, #000 42%, rgba(0, 0, 0, 0) 43%) bottom left, linear-gradient(to bottom right, #000 42%, rgba(0, 0, 0, 0) 43%) bottom right;\n  -webkit-mask-size: 50% 50%;\n  -webkit-mask-repeat: no-repeat;\n  animation: progress-ofy9at-44ed53d7 1.2s infinite linear;\n}\n@keyframes progress-ofy9at-44ed53d7 {\n90%, 100% {\n    background-size: 100% 100%;\n}\n}\n.middle[data-v-44ed53d7] {\n  height: 90vh;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".progress[data-v-44ed53d7] {\n  width: 71.6px;\n  height: 71.6px;\n  background: linear-gradient(#3d1fcf 0 0) bottom/100% 0% no-repeat #f1f1f1;\n  -webkit-mask: radial-gradient(circle at 60% 65%, #000 62%, rgba(0, 0, 0, 0) 65%) top left, radial-gradient(circle at 40% 65%, #000 62%, rgba(0, 0, 0, 0) 65%) top right, linear-gradient(to bottom left, #000 42%, rgba(0, 0, 0, 0) 43%) bottom left, linear-gradient(to bottom right, #000 42%, rgba(0, 0, 0, 0) 43%) bottom right;\n  -webkit-mask-size: 50% 50%;\n  -webkit-mask-repeat: no-repeat;\n  animation: progress-ofy9at-44ed53d7 1.2s infinite linear;\n}\n@keyframes progress-ofy9at-44ed53d7 {\n90%, 100% {\n    background-size: 100% 100%;\n}\n}\n.middle[data-v-44ed53d7] {\n  height: 90vh;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

@@ -88,8 +88,8 @@
                     </ul>
                 @enderror
             </div>
-            <div>
-                <img src="{{ asset('storage/' . $user->uploaded_photo) }}" alt="{{ $user->name }}">
+            <div class="text-center mt-2">
+                <img src="{{ asset('storage/' . $user->uploaded_photo) }}" alt="{{ $user->name }}" class="mod-img border border-dark border-5">
             </div>
         </div>
 
@@ -106,8 +106,8 @@
                     </ul>
                 @enderror
             </div>
-            <div>
-                <img src="{{ asset('storage/' . $user->curriculum_vitae) }}" alt="{{ $user->name }}">
+            <div class="text-center mt-2">
+                <img src="{{ asset('storage/' . $user->curriculum_vitae) }}" alt="{{ $user->name }}" class="border border-dark border-5 rounded-2">
             </div>
         </div>
 

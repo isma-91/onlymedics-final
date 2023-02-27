@@ -1,6 +1,8 @@
 require('./bootstrap');
 const { h } = require("vue");
 
+import '@fortawesome/fontawesome-free/css/all.css';
+
 // window.Vue = require('vue');
 import Vue from 'vue';
 import App from './App.vue';

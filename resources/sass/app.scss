@@ -7,6 +7,13 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+//Fontawesome
+$fa-font-path: "./fonts/font-awesome" !default;
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+@import "~@fortawesome/fontawesome-free/scss/regular";
+@import "~@fortawesome/fontawesome-free/scss/solid";
+@import "~@fortawesome/fontawesome-free/scss/brands";
+
 .review-message {
     max-width: 600px;
     height: 50px;
@@ -18,9 +25,69 @@
     width: 50px;
 }
 
-.righe {
+.riphp {
     display: flex;
     align-items: center;
     height: 50px;
     max-width: 1000px
+}
+
+.mod-btn {
+    &:hover {
+        fill: #000000;
+    }
+}
+.mod-img {
+    width: 350px;
+    height: 350px;
+    object-fit: cover;
+    object-position: center;
+    margin-right: 1rem;
+    border-radius: 100%;
+}
+
+.doctor_container {
+    font-size: 1.5rem;
+}
+
+.specialization_container {
+    font-size: 1.5rem;
+    .mod_specialization {
+        font-size: 1rem;
+        background-color: #EEF2F7;
+        padding: .2rem;
+    }
+}
+
+.mod-curriculum {
+    max-width: 350px;
+    max-height: 500px;
+}
+
+@media screen and (max-width: 1200px) {
+    .query_container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .cv_container {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .mod-curriculum {
+        max-width: 175px;
+        max-height: 250px;
+    }
+    .mod-img {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        object-position: center;
+        margin-right: 1rem;
+        border-radius: 100%;
+    }
 }

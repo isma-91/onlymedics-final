@@ -21,13 +21,11 @@
                 <li v-for="review in results.reviews" :key="review.id" class="border border-2 border-dark my-2 p-3 rounded bg-white">
                     <h3>{{ review.guest_name + ' ' + review.guest_last_name}}</h3>
                     <p>{{ review.text }}</p>
-                    <div class="d-flex fs-3">
-                        <p>Valutazione: </p>
-                        <div v-for="star in review.vote" :key="review.id" class="star-yellow">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                            </svg>
-                        </div>
+                    <div class="d-flex align-items-center center fs-3">
+                        <div class="me-2">Valutazione:</div>
+                        <svg  v-for="star, index in review.vote" :key="index" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#FBB917" class="bi bi-star-fill me-1" viewBox="0 0 16 16" stroke="black" stroke-width=".5">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                        </svg>
                     </div>
                     <p>Data: {{ new Date(review.created_at).toLocaleDateString('it-IT') }}</p>
                 </li>
@@ -67,10 +65,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    .star-yellow {
-        color: orange;
-    }
-
     .progress {
         width: 71.6px;
         height: 71.6px;

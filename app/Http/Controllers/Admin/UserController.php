@@ -23,14 +23,15 @@ class UserController extends Controller
         'curriculum_vitae'    => 'nullable|image|max:1024',
         'uploaded_photo'      => 'nullable|image|max:1024',
         'phone'               => 'nullable|regex:/^[0-9]+$/|max:20',
-        'services'            => 'nullable|string',
+        'services'            => 'nullable|string|max:255',
     ];
 
     public function show(User $user)
     {
         if (Auth::id() !== $user->id) abort(401);
+        $user->load('specializations');
         return view('admin.users.show', [
-            'user' => $user
+            'user'  => $user
         ]);
     }
     public function edit(User $user)

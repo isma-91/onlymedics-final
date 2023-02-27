@@ -5336,6 +5336,12 @@ __webpack_require__.r(__webpack_exports__);
       } else if (!this.specialization) {
         this.isFiltered = false;
       }
+    },
+    listStrings: function listStrings(arr) {
+      if (arr.length <= 1) {
+        return arr[0] + ".";
+      }
+      return arr.slice(0, -1).join(", ") + " and " + arr.at(-1) + ".";
     }
   },
   created: function created() {
@@ -5478,16 +5484,26 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _vm.results ? _c("div", [_c("h1", [_vm._v("Dr." + _vm._s(_vm.results.user.name + " " + _vm.results.user.last_name))]), _vm._v(" "), _c("h2", [_vm._v("Specializzato in:")]), _vm._v(" "), _c("ul", _vm._l(_vm.results.user.specializations, function (spec) {
-    return _c("li", {
-      key: spec.id
-    }, [_vm._v(_vm._s(spec.name))]);
-  }), 0), _vm._v(" "), _c("img", {
+  return _vm.results ? _c("div", [_c("div", {
+    staticClass: "d-flex flex-column justify-content-center align-items-center"
+  }, [_c("h1", [_vm._v("Dr." + _vm._s(_vm.results.user.name + " " + _vm.results.user.last_name))]), _vm._v(" "), _c("img", {
+    staticClass: "img-size my-2",
     attrs: {
       src: _vm.results.user.uploaded_photo ? "/storage/" + _vm.results.user.uploaded_photo : _vm.results.user.photo,
       alt: _vm.results.user.name
     }
-  }), _vm._v(" "), _c("router-link", {
+  })]), _vm._v(" "), _c("h2", {
+    staticClass: "text-center"
+  }, [_vm._v("Specializzato in: ")]), _vm._v(" "), _c("ul", {
+    staticClass: "specialization_container"
+  }, _vm._l(_vm.results.user.specializations, function (spec) {
+    return _c("li", {
+      key: spec.id,
+      staticClass: "mod_specialization"
+    }, [_vm._v(_vm._s(spec.name))]);
+  }), 0), _vm._v(" "), _c("div", {
+    staticClass: "d-flex justify-content-center align-items-center my-4 gap-2"
+  }, [_c("router-link", {
     staticClass: "btn btn-primary",
     attrs: {
       to: {
@@ -5497,7 +5513,7 @@ var render = function render() {
         }
       }
     }
-  }, [_vm._v("\n        Invia un Messaggio\n    ")]), _vm._v(" "), _c("router-link", {
+  }, [_vm._v("\n        Invia un Messaggio\n        ")]), _vm._v(" "), _c("router-link", {
     staticClass: "btn btn-primary",
     attrs: {
       to: {
@@ -5507,7 +5523,7 @@ var render = function render() {
         }
       }
     }
-  }, [_vm._v("\n        Lascia una recensione\n    ")]), _vm._v(" "), _c("h2", [_vm._v("Recensioni:")]), _vm._v(" "), _c("ul", _vm._l(_vm.results.reviews, function (review) {
+  }, [_vm._v("\n            Lascia una recensione\n        ")])], 1), _vm._v(" "), _c("h2", [_vm._v("Recensioni:")]), _vm._v(" "), _c("ul", _vm._l(_vm.results.reviews, function (review) {
     return _c("li", {
       key: review.id,
       staticClass: "border border-2 border-dark my-2 p-3 rounded bg-white"
@@ -5534,7 +5550,7 @@ var render = function render() {
         }
       })]);
     })], 2), _vm._v(" "), _c("p", [_vm._v("Data: " + _vm._s(new Date(review.created_at).toLocaleDateString("it-IT")))])]);
-  }), 0)], 1) : _c("div", {
+  }), 0)]) : _c("div", {
     staticClass: "d-flex justify-content-center align-items-center middle"
   }, [_c("div", {
     staticClass: "progress"
@@ -5567,30 +5583,23 @@ var render = function render() {
     staticClass: "text-center"
   }, [_vm._v("Benvenuto su Only Doctors")]), _vm._v(" "), _c("h2", {
     staticClass: "text-center"
-  }, [_vm._v("Medici in evidenza")]), _vm._v(" "), _vm.results ? _c("div", [_c("div", {
-    staticClass: "row g-3"
+  }, [_vm._v("Medici in evidenza")]), _vm._v(" "), _vm.results ? _c("div", {
+    staticClass: "grid_flex"
+  }, [_c("div", {
+    staticClass: "doctor_column"
   }, _vm._l(_vm.results.data, function (doctor) {
     return _c("div", {
-      key: doctor.id,
-      staticClass: "col-sm-6 col-md-4"
-    }, [_c("div", {
-      staticClass: "card h-100"
-    }, [_c("div", {
-      staticClass: "img-container mx-auto"
-    }, [_c("img", {
+      staticClass: "doctor"
+    }, [_c("div", [_c("img", {
       staticClass: "img-size",
       attrs: {
         src: doctor.uploaded_photo ? "/storage/" + doctor.uploaded_photo : doctor.photo,
         alt: doctor.name
       }
     })]), _vm._v(" "), _c("div", {
-      staticClass: "card-body d-flex flex-column"
-    }, [_c("h5", {
-      staticClass: "card-title text-center"
-    }, [_vm._v(_vm._s(doctor.name + " " + doctor.last_name))]), _vm._v(" "), _c("p", {
-      staticClass: "card-text h-100 text-center"
-    }, [_vm._v(_vm._s(doctor.services))]), _vm._v(" "), _c("router-link", {
-      staticClass: "btn btn-primary",
+      staticClass: "doctor_content w-100"
+    }, [_c("div", [_c("strong", [_vm._v(_vm._s(doctor.name + " " + doctor.last_name))])]), _vm._v(" "), _c("div", [_vm._v(_vm._s(doctor.address))]), _vm._v(" "), _c("div", [_vm._v(_vm._s(doctor.phone))]), _vm._v(" "), _c("div", [_vm._v(_vm._s(doctor.email))])]), _vm._v(" "), _c("div", [_c("router-link", {
+      staticClass: "btn btn-primary px-5",
       attrs: {
         to: {
           name: "pageDocProfile",
@@ -5599,10 +5608,35 @@ var render = function render() {
           }
         }
       }
-    }, [_vm._v("Visita")])], 1)])]);
-  }), 0)]) : _vm._e()]);
+    }, [_c("svg", {
+      staticClass: "bi bi-eye-fill",
+      attrs: {
+        xmlns: "http://www.w3.org/2000/svg",
+        width: "32",
+        height: "32",
+        fill: "currentColor",
+        viewBox: "0 0 16 16"
+      }
+    }, [_c("path", {
+      attrs: {
+        d: "M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"
+      }
+    }), _vm._v(" "), _c("path", {
+      attrs: {
+        d: "M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"
+      }
+    })])])], 1)]);
+  }), 0), _vm._v(" "), _vm._m(0)]) : _vm._e()]);
 };
-var staticRenderFns = [];
+var staticRenderFns = [function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
+    staticClass: "sponsor_column"
+  }, [_c("div", {
+    staticClass: "sponsor_content"
+  }, [_vm._v("\n                pubblicita'\n            ")])]);
+}];
 render._withStripped = true;
 
 
@@ -6137,7 +6171,7 @@ var render = function render() {
     }), _vm._v(" "), _c("div", {
       staticClass: "card-body d-flex flex-column"
     }, [_c("h5", {
-      staticClass: "card-title"
+      staticClass: "card-title text-center"
     }, [_vm._v(_vm._s(doctor.name + " " + doctor.last_name))]), _vm._v(" "), _c("p", {
       staticClass: "card-text h-100"
     }, [_vm._v(_vm._s(doctor.services))]), _vm._v(" "), _c("router-link", {
@@ -6223,11 +6257,16 @@ var render = function render() {
     }), _vm._v(" "), _c("div", {
       staticClass: "card-body d-flex flex-column"
     }, [_c("h5", {
-      staticClass: "card-title"
-    }, [_vm._v(_vm._s(doctor.name + " " + doctor.last_name))]), _vm._v(" "), _c("p", {
-      staticClass: "card-text h-100"
-    }, [_vm._v(_vm._s(doctor.services))]), _vm._v(" "), _c("router-link", {
-      staticClass: "btn btn-primary",
+      staticClass: "card-title text-center"
+    }, [_vm._v(_vm._s(doctor.name + " " + doctor.last_name))]), _vm._v(" "), _c("div", {
+      staticClass: "d-flex flex-wrap h-100 align-items-center justify-content-center"
+    }, _vm._l(doctor.specializations.slice(0, 3), function (spc) {
+      return _c("div", {
+        key: spc.id,
+        staticClass: "card-text me-1 bg_grey"
+      }, [_vm._v(" " + _vm._s(spc.name) + " ")]);
+    }), 0), _vm._v(" "), _c("router-link", {
+      staticClass: "btn btn-primary mt-2",
       attrs: {
         to: {
           name: "pageDocProfile",
@@ -11659,7 +11698,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".progress[data-v-44ed53d7] {\n  width: 71.6px;\n  height: 71.6px;\n  background: linear-gradient(#3d1fcf 0 0) bottom/100% 0% no-repeat #f1f1f1;\n  -webkit-mask: radial-gradient(circle at 60% 65%, #000 62%, rgba(0, 0, 0, 0) 65%) top left, radial-gradient(circle at 40% 65%, #000 62%, rgba(0, 0, 0, 0) 65%) top right, linear-gradient(to bottom left, #000 42%, rgba(0, 0, 0, 0) 43%) bottom left, linear-gradient(to bottom right, #000 42%, rgba(0, 0, 0, 0) 43%) bottom right;\n  -webkit-mask-size: 50% 50%;\n  -webkit-mask-repeat: no-repeat;\n  animation: progress-ofy9at-44ed53d7 1.2s infinite linear;\n}\n@keyframes progress-ofy9at-44ed53d7 {\n90%, 100% {\n    background-size: 100% 100%;\n}\n}\n.middle[data-v-44ed53d7] {\n  height: 90vh;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".progress[data-v-44ed53d7] {\n  width: 71.6px;\n  height: 71.6px;\n  background: linear-gradient(#3d1fcf 0 0) bottom/100% 0% no-repeat #f1f1f1;\n  -webkit-mask: radial-gradient(circle at 60% 65%, #000 62%, rgba(0, 0, 0, 0) 65%) top left, radial-gradient(circle at 40% 65%, #000 62%, rgba(0, 0, 0, 0) 65%) top right, linear-gradient(to bottom left, #000 42%, rgba(0, 0, 0, 0) 43%) bottom left, linear-gradient(to bottom right, #000 42%, rgba(0, 0, 0, 0) 43%) bottom right;\n  -webkit-mask-size: 50% 50%;\n  -webkit-mask-repeat: no-repeat;\n  animation: progress-ofy9at-44ed53d7 1.2s infinite linear;\n}\n@keyframes progress-ofy9at-44ed53d7 {\n90%, 100% {\n    background-size: 100% 100%;\n}\n}\n.middle[data-v-44ed53d7] {\n  height: 90vh;\n}\n.img-size[data-v-44ed53d7] {\n  width: 300px;\n  height: 300px;\n  -o-object-fit: cover;\n     object-fit: cover;\n  -o-object-position: center;\n     object-position: center;\n  border-radius: 100%;\n}\n.specialization_container[data-v-44ed53d7] {\n  display: flex;\n  justify-content: center;\n  flex-wrap: wrap;\n  gap: 0.5rem;\n}\n.specialization_container .mod_specialization[data-v-44ed53d7] {\n  background-color: #EEF2F7;\n  padding: 0.4rem;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -11683,7 +11722,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".img-size[data-v-13e03f97] {\n  width: 100%;\n  height: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n  -o-object-position: center;\n     object-position: center;\n}\n.img-container[data-v-13e03f97] {\n  margin-top: 15px;\n  width: 70%;\n  height: 300px;\n  border-radius: 100%;\n  overflow: hidden;\n}\n.card[data-v-13e03f97] {\n  background-color: rgba(255, 255, 255, 0.5);\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".grid_flex[data-v-13e03f97] {\n  display: flex;\n}\n.doctor_column[data-v-13e03f97] {\n  flex-grow: 2;\n}\n.doctor_column .doctor[data-v-13e03f97] {\n  display: flex;\n  align-items: center;\n  gap: 1rem;\n  background-color: white;\n  margin: 1rem;\n  border: 2px solid black;\n  border-radius: 1rem;\n  padding: 0.3rem;\n}\n.doctor_column .doctor_content[data-v-13e03f97] {\n  font-size: 1.5rem;\n}\n.sponsor_column[data-v-13e03f97] {\n  width: 300px;\n  flex-grow: 1;\n  font-size: 2rem;\n}\n.sponsor_column .sponsor_content[data-v-13e03f97] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  background-color: aqua;\n  margin: 1rem 0;\n  width: 100%;\n  height: 100%;\n}\n.img-size[data-v-13e03f97] {\n  width: 200px;\n  height: 200px;\n  -o-object-fit: cover;\n     object-fit: cover;\n  -o-object-position: center;\n     object-position: center;\n  border-radius: 100%;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -11707,7 +11746,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".grid[data-v-7da4a964] {\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n}\n.img-size[data-v-7da4a964] {\n  max-height: 285px;\n  -o-object-fit: cover;\n     object-fit: cover;\n  -o-object-position: center;\n     object-position: center;\n  margin: auto;\n  width: 70%;\n  height: 300px;\n  border-radius: 100%;\n  margin-top: 15px;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".grid[data-v-7da4a964] {\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n}\n.img-size[data-v-7da4a964] {\n  max-height: 285px;\n  -o-object-fit: cover;\n     object-fit: cover;\n  -o-object-position: center;\n     object-position: center;\n  margin: auto;\n  width: 70%;\n  height: 300px;\n  border-radius: 100%;\n  margin-top: 15px;\n}\n.bg_grey[data-v-7da4a964] {\n  background-color: rgba(13, 110, 253, 0.6);\n  padding: 0.2rem 0.9rem;\n  margin-bottom: 0.2rem;\n  color: white;\n  height: -moz-min-content;\n  height: min-content;\n  border-radius: 1rem;\n}\n.card[data-v-7da4a964] {\n  background-color: rgba(255, 255, 255, 0.6);\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

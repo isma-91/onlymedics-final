@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    Sei loggato <span class="text-capitalize">{{ $user->name}}</span>
                 </div>
             </div>
         </div>

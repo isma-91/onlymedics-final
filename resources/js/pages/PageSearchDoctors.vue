@@ -18,7 +18,7 @@
                     <div class="card h-100 overflow-hidden">
                         <img :src="doctor.uploaded_photo ? '/storage/' + doctor.uploaded_photo : doctor.photo" :alt="doctor.name" class="img-size">
                         <div class="card-body d-flex flex-column">
-                            <h5 class="card-title">{{ doctor.name + ' ' + doctor.last_name}}</h5>
+                            <h5 class="card-title text-center">{{ doctor.name + ' ' + doctor.last_name}}</h5>
                             <p class="card-text h-100">{{ doctor.services }}</p>
                             <router-link :to="{name: 'pageDocProfile', params: {id: doctor.id}}" class="btn btn-primary">Visita</router-link>
                         </div>
@@ -61,9 +61,11 @@
                     <div class="card h-100 overflow-hidden">
                         <img :src="doctor.uploaded_photo ? '/storage/' + doctor.uploaded_photo : doctor.photo" :alt="doctor.name" class="img-size">
                         <div class="card-body d-flex flex-column">
-                            <h5 class="card-title">{{ doctor.name + ' ' + doctor.last_name}}</h5>
-                            <p class="card-text h-100">{{ doctor.services }}</p>
-                            <router-link :to="{name: 'pageDocProfile', params: {id: doctor.id}}" class="btn btn-primary">Visita</router-link>
+                            <h5 class="card-title text-center">{{ doctor.name + ' ' + doctor.last_name}}</h5>
+                            <div class="d-flex flex-wrap h-100 align-items-center justify-content-center">
+                                <div class="card-text me-1 bg_grey" v-for="spc in doctor.specializations.slice(0,3)" :key="spc.id"> {{ spc.name }} </div>
+                            </div>
+                            <router-link :to="{name: 'pageDocProfile', params: {id: doctor.id}}" class="btn btn-primary mt-2">Visita</router-link>
                         </div>
                     </div>
                 </div>
@@ -115,10 +117,16 @@ export default {
                 }).catch(error => {
                     console.log(error);
                 });
-            } else if (!this.specialization ){
-                this.isFiltered =  false;
-            }
+                } else if (!this.specialization ){
+                    this.isFiltered =  false;
+                }
 
+            },
+            listStrings(arr) {
+                if (arr.length <= 1) {
+                    return arr[0] + ".";
+                }
+                return arr.slice(0, -1).join(", ") + " and " + arr.at(-1) + ".";
             },
     },
     created(){
@@ -144,5 +152,18 @@ export default {
         height: 300px;
         border-radius: 100%;
         margin-top: 15px;
+    }
+
+    .bg_grey {
+        background-color: rgba($color: #0d6efd, $alpha: .6);
+        padding: .2rem .9rem;
+        margin-bottom: .2rem;
+        color: white;
+        height: min-content;
+        border-radius: 1rem;
+    }
+
+    .card {
+        background-color: rgba($color: #ffff, $alpha: 0.6);
     }
 </style>

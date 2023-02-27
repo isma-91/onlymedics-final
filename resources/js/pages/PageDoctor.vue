@@ -1,18 +1,23 @@
 <template >
     <div v-if="results">
-        <h1>Dr.{{results.user.name + ' ' + results.user.last_name}}</h1>
-        <h2>Specializzato in:</h2>
-        <ul>
-            <li v-for="spec in results.user.specializations" :key="spec.id">{{ spec.name }}</li>
+        <div class="d-flex flex-column justify-content-center align-items-center">
+            <h1>Dr.{{results.user.name + ' ' + results.user.last_name}}</h1>
+            <img :src="results.user.uploaded_photo ? '/storage/' + results.user.uploaded_photo : results.user.photo" :alt="results.user.name" class="img-size my-2">
+        </div>
+        <h2 class="text-center">Specializzato in: </h2>
+        <ul class="specialization_container">
+            <li v-for="spec in results.user.specializations" :key="spec.id" class="mod_specialization">{{ spec.name }}</li>
         </ul>
-        <img :src="results.user.uploaded_photo ? '/storage/' + results.user.uploaded_photo : results.user.photo" :alt="results.user.name">
-        <!-- implementare controlli per i vari tipi di immagine (fotourl, foto importata, cv importato) -->
-        <router-link :to="{name: 'msgToDoc', params: {id: results.user.id}}" class="btn btn-primary">
+        <div class="d-flex justify-content-center align-items-center my-4 gap-2">
+            <router-link :to="{name: 'msgToDoc', params: {id: results.user.id}}" class="btn btn-primary">
             Invia un Messaggio
-        </router-link>
-        <router-link :to="{name: 'reviewToDoc', params: {id: results.user.id}}" class="btn btn-primary">
-            Lascia una recensione
-        </router-link>
+            </router-link>
+            <router-link :to="{name: 'reviewToDoc', params: {id: results.user.id}}" class="btn btn-primary">
+                Lascia una recensione
+            </router-link>
+        </div>
+
+        <!-- implementare controlli per i vari tipi di immagine (fotourl, foto importata, cv importato) -->
         <!-- <ul>
             <li v-for="rec in results.reviews" :key="rec.id">{{ rec.text }}</li>
         </ul> -->
@@ -87,4 +92,23 @@ export default {
     .middle {
         height: 90vh;
     }
+
+    .img-size {
+        width: 300px;
+        height: 300px;
+        object-fit: cover;
+        object-position: center;
+        border-radius: 100%;
+    }
+
+    .specialization_container {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: .5rem;
+    .mod_specialization {
+        background-color: #EEF2F7;
+        padding: .4rem;
+    }
+}
 </style>

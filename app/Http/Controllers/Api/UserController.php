@@ -12,9 +12,10 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(User $user)
     {
-        $users = User::paginate(9);
+        $user = User::where('id', $user)->with(['specializations'])->findOrFail($user);
+        $users = User::paginate(6);
 
         return response()->json([
             'success' => true,

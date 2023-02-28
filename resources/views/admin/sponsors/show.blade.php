@@ -8,5 +8,5 @@
     <p>DURATA: {{ $sponsor->duration }} ore</p>
 
     <h2>Acquista adesso</h2>
-    <a class="btn btn-primary text-light fw-bold" href="{{ route('admin.sponsors.payment', []) }}">{{ $sponsor->cost }}€</a>
+    <a class="btn btn-primary text-light fw-bold" href="{{ route('admin.sponsors.payment', ['value' => $sponsor->title]) }}">{{ $sponsor->cost }}€</a>
 @endsection

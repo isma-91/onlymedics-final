@@ -47,7 +47,6 @@ class SponsorController extends Controller
             'token' =>  $token,
             'value' =>  $value,
             'user'  =>  $user,
-            'sponsor' => $sponsor
         ]);
     }
 

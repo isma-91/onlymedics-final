@@ -33,7 +33,6 @@ class SponsorController extends Controller
     }
 
     public function payment(Request $request) {
-        $sponsor = Sponsor::all();
         $user = Auth::user();
         $value = $request->value;
         $gateway = new Gateway([

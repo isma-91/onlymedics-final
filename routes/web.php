@@ -36,6 +36,10 @@ Route::middleware('auth')
         Route::get('/users/{user}/edit', 'UserController@edit')->name('users.edit');
         Route::get('/sponsors', 'SponsorController@index')->name('sponsors.index');
         Route::get('/sponsors/{sponsor}', 'SponsorController@show')->name('sponsors.show');
+        //Rotte pagamento
+        Route::get('/sponsors/payment/{value}', 'SponsorController@payment')->name('sponsors.payment');
+        //TODO: da verificare
+        Route::post('/checkout', 'SponsorController@checkout')->name('sponsors.checkout');
 });
 
 Route::get('{any?}', function () {

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Sponsor;
+use Braintree\Gateway;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -31,5 +32,26 @@ class SponsorController extends Controller
         ]);
     }
 
+    public function payment(Request $request) {
+        $sponsor = Sponsor::all();
+        $user = Auth::user();
+        $value = $request->value;
+        $gateway = new Gateway([
+            'environment' => config('services.braintree.enviroment'),
+            'merchantId' => config('services.braintree.merchantId'),
+            'publicKey' => config('services.braintree.publicKey'),
+            'privateKey' => config('services.braintree.privateKey')
+        ]);
+        $token = $gateway->ClientToken()->generate();
+        return view('admin.sponsors.payment', [
+            'token' =>  $token,
+            'value' =>  $value,
+            'user'  =>  $user,
+            'sponsor' => $sponsor
+        ]);
+    }
 
+    public function checkout(Request $request) {
+
+    }
 }

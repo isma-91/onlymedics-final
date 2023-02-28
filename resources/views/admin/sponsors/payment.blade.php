@@ -25,7 +25,7 @@
             <label for="amount">
                 <span class="input-label">Stai acquistando il pacchetto {{ strtoupper($value) }}.</span>
                 <div class="input-wrapper amount-wrapper">
-                    <input id="amount" name="amount" type="hidden" min="1" placeholder="Amount" value="@if ($value=='silver' ) 2.99 @elseif ($value=='gold')5.99 @elseif($value=='platinum')9.99 @endif" readonly>
+                    <input id="amount" name="amount" type="hidden" min="1" placeholder="Amount" value="@if ($value=='Pacchetto Silver' ) 2.99 @elseif ($value=='Pacchetto Gold')5.99 @elseif($value=='Pacchetto Platinum')9.99 @endif" readonly>
                 </div>
             </label>
 

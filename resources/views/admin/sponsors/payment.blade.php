@@ -7,7 +7,7 @@
         @if (session('success_message'))
             <div class="alert alert-success">
                 {{ session('success_message') }}<br>
-                <br><span>Ritorna alla <a href="/dashboard">dashboard</a>.</span>
+                <br><span>Ritorna al tuo <a href="{{ route('admin.users.show', ['user' => $user])}}">profilo</a>.</span>
             </div>
         @endif
         @if (count($errors) > 0)
@@ -20,7 +20,6 @@
             </div>
         @endif
         <form method="post" id="payment-form" action="{{ url('/admin/checkout') }}">
-            {{-- @method('post') --}}
             @csrf
             <section>
                 <label for="amount">

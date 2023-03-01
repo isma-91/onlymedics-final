@@ -22,9 +22,9 @@ class UserSeeder extends Seeder
         $names = config('names');
         $sponsors = Sponsor::all()->pluck('id');
         $specializations = Specialization::all()->pluck('id');
-
         //Foreach per avere tutti i nomi differenti, ma da vedere se funzionerà quando faremo anche tutto il resto
         foreach ($names as $name) {
+
             $user = User::create([
                 'name'              => $name['name'],
                 'last_name'         => $name['last_name'],
@@ -38,7 +38,10 @@ class UserSeeder extends Seeder
                 'password'          => Hash::make($faker->word()),
             ]);
 
-            $user->sponsors()->attach($faker->randomElements($sponsors, rand(0, 1)));
+            $timestamp = rand(strtotime("Jan 01 2019"), strtotime("Jan 01 2023"));
+            $random_date = date('Y-m-d H:i:s',$timestamp);
+
+            $user->sponsors()->attach($faker->randomElements($sponsors, rand(0, 1)), ['expiring_date'=>date($random_date)]);
             $user->specializations()->attach($faker->randomElements($specializations, rand(1, 3)));
         }
     }

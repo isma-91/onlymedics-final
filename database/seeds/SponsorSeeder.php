@@ -12,10 +12,10 @@ class SponsorSeeder extends Seeder
 
         foreach ($sponsors as $sponsor_details) {
             $sponsor = Sponsor::create([
-                'title' => $sponsor_details['title'],
-                'duration' => $sponsor_details['duration'],
+                'title'       => $sponsor_details['title'],
+                'duration'    => $sponsor_details['duration'],
                 'description' => $sponsor_details['description'],
-                'cost' => $sponsor_details['cost'],
+                'cost'        => $sponsor_details['cost'],
             ]);
         }
     }

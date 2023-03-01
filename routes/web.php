@@ -1,5 +1,7 @@
 <?php
 
+use Braintree\Gateway;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -37,9 +39,57 @@ Route::middleware('auth')
         Route::get('/sponsors', 'SponsorController@index')->name('sponsors.index');
         Route::get('/sponsors/{sponsor}', 'SponsorController@show')->name('sponsors.show');
         //Rotte pagamento
-        Route::get('/sponsors/payment/{value}', 'SponsorController@payment')->name('sponsors.payment');
+        Route::get('/sponsors/payment/{value}', function (Request $request) {
+            $user = Auth::user();
+            $value = $request->value;
+            $gateway = new Gateway([
+                'environment' => config('services.braintree.enviroment'),
+                'merchantId' => config('services.braintree.merchantId'),
+                'publicKey' => config('services.braintree.publicKey'),
+                'privateKey' => config('services.braintree.privateKey')
+            ]);
+            $token = $gateway->ClientToken()->generate();
+            return view('admin.sponsors.payment', [
+                'token' =>  $token,
+                'value' =>  $value,
+                'user'  =>  $user,
+            ]);
+        })->name('sponsors.payment');
+
         //TODO: da verificare
-        Route::post('/checkout', 'SponsorController@checkout')->name('sponsors.checkout');
+        Route::post( '/checkout', function (Request $request) {
+            $gateway = new Gateway([
+                'environment'  => config('services.braintree.enviroment'),
+                'merchantId'   => config('services.braintree.merchantId'),
+                'publicKey'    => config('services.braintree.publicKey'),
+                'privateKey'   => config('services.braintree.privateKey')
+            ]);
+            $amount = $request->amount;
+            $nonce = $request->payment_method_nonce;
+
+            $result = $gateway->transaction()->sale([
+                'amount' => $amount,
+                'paymentMethodNonce' => $nonce,
+                'options' => [
+                    'submitForSettlement' => true
+                ]
+            ]);
+
+            if ($result->success) {
+                $transaction = $result->transaction;
+                // if ($transaction->amount == '2.99') {
+                //     $user = User::find(Auth::user()->id);
+                // }
+                return back()->with('success_message', 'Transazione eseguita');
+            }else {
+                $errorString = '';
+                foreach ($result->errors->deepAll() as  $error) {
+                    $errorString .= 'Error: ' . $error->code . ': ' . $error->message . '\n';
+                }
+                return back()->withErrors('C\'è stato un errore: ' .$result->message );
+            }
+
+        })->name('sponsors.checkout');
 });
 
 Route::get('{any?}', function () {

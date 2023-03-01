@@ -19,7 +19,7 @@
                 </ul>
             </div>
         @endif
-        <form method="post" id="payment-form" action="{{ url('/checkout') }}">
+        <form method="post" id="payment-form" action="{{ url('/admin/checkout') }}">
             {{-- @method('post') --}}
             @csrf
             <section>

@@ -24,7 +24,7 @@ class User extends Authenticatable
 
 
     public function sponsors() {
-        return $this->belongsToMany('App\Sponsor');
+        return $this->belongsToMany('App\Sponsor', 'sponsor_user')->withPivot('expiring_date');
     }
 
     public function specializations() {

@@ -18,10 +18,11 @@ class CreateSponsorUserTable extends Migration
             // $table->foreignId('sponsor_id')->constrained();
             $table->unsignedTinyInteger('sponsor_id')->nullable();
             $table->unsignedMediumInteger('user_id')->nullable();
-            $table->date('expiring_date')->nullable();
 
             $table->foreign('sponsor_id')->references('id')->on('sponsors');
             $table->foreign('user_id')->references('id')->on('users');
+
+            $table->date('expiring_date')->nullable();
         });
     }
 

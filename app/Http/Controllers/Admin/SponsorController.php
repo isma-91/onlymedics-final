@@ -75,7 +75,7 @@ class SponsorController extends Controller
                 if($transaction->amount == '2.99'){
                     $user = User::find(Auth::user()->id);
                     if ($user->sponsors[0]->title != null) {
-                        $datatotale= date('Y-m-d',strtotime("+1 day",strtotime($user->sponsors[0]['pivot']['expiring_date'])));
+                        $datatotale= date('Y-m-d',strtotime($user->sponsors[0]['pivot']['expiring_date'] . '+1 day'));
                         $user->sponsors()->sync([1=>['expiring_date'=>date('Y-m-d', strtotime($datatotale))]]);
                     }else{
                         $user->sponsors()->sync([1=>['expiring_date'=>date('Y-m-d', strtotime('tomorrow'))]]);
@@ -84,19 +84,19 @@ class SponsorController extends Controller
                 if($transaction->amount == '5.99'){
                     $user = User::find(Auth::user()->id);
                     if ($user->sponsors[0]->title != null) {
-                        $datatotale= date('Y-m-d',strtotime("+3 day",strtotime($user->sponsors[0]['pivot']['expiring_date'])));
+                        $datatotale= date('Y-m-d',strtotime("+3 days",strtotime($user->sponsors[0]['pivot']['expiring_date'])));
                         $user->sponsors()->sync([2=>['expiring_date'=>date('Y-m-d', strtotime($datatotale))]]);
                     }else{
-                        $user->sponsors()->sync([2=>['expiring_date'=>date('Y-m-d', strtotime('+3 day'))]]);
+                        $user->sponsors()->sync([2=>['expiring_date'=>date('Y-m-d', strtotime('+3 days'))]]);
                     }
                 }
                 if($transaction->amount == '9.99'){
                     $user = User::find(Auth::user()->id);
                     if ($user->sponsors[0]->title != null) {
-                        $datatotale= date('Y-m-d',strtotime("+6 day",strtotime($user->sponsors[0]['pivot']['expiring_date'])));
+                        $datatotale= date('Y-m-d',strtotime("+6 days",strtotime($user->sponsors[0]['pivot']['expiring_date'])));
                         $user->sponsors()->sync([3=>['expiring_date'=>date('Y-m-d', strtotime($datatotale))]]);
                     }else{
-                        $user->sponsors()->sync([3=>['expiring_date'=>date('Y-m-d', strtotime('+6 day'))]]);
+                        $user->sponsors()->sync([3=>['expiring_date'=>date('Y-m-d', strtotime('+6 days'))]]);
                     }
                 }
                 return back()->with('success_message', 'Transazione eseguita con successo. ID transazione: ' .$transaction->id);
@@ -107,11 +107,11 @@ class SponsorController extends Controller
                 }
                 if($transaction->amount == '5.99'){
                     $user = User::find(Auth::user()->id);
-                    $user->sponsors()->sync([2=>['expiring_date'=>date('Y-m-d', strtotime('+3 day'))]]);
+                    $user->sponsors()->sync([2=>['expiring_date'=>date('Y-m-d', strtotime('+3 days'))]]);
                 }
                 if($transaction->amount == '9.99'){
                     $user = User::find(Auth::user()->id);
-                    $user->sponsors()->sync([3=>['expiring_date'=>date('Y-m-d', strtotime('+6 day'))]]);
+                    $user->sponsors()->sync([3=>['expiring_date'=>date('Y-m-d', strtotime('+6 days'))]]);
                 }
                 return back()->with('success_message', 'Transazione eseguita con successo. ID transazione: ' .$transaction->id);
             }
@@ -125,3 +125,4 @@ class SponsorController extends Controller
 
     }
 }
+

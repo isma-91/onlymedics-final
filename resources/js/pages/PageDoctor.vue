@@ -2,7 +2,8 @@
     <div v-if="results">
         <div class="d-flex flex-column justify-content-center align-items-center">
             <h1>Dr.{{results.user.name + ' ' + results.user.last_name}}</h1>
-            <img :src="results.user.uploaded_photo ? '/storage/' + results.user.uploaded_photo : results.user.photo" :alt="results.user.name" class="img-size my-2">
+            <img v-if="results.user.uploaded_photo || results.user.photo" :src="results.user.uploaded_photo ? '/storage/' + results.user.uploaded_photo : results.user.photo" :alt="results.user.name"  class="img-size my-2">
+            <img v-else src="../../../public/img/dottore.jpg" :alt="results.user.name" class="img-size">
         </div>
         <h2 class="text-center">Specializzato in: </h2>
         <ul class="specialization_container">

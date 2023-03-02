@@ -20,22 +20,19 @@
         </div> -->
         <div class="grid_flex" v-if="results">
             <div class="doctor_column">
-                <div class="doctor" v-for="doctor in results.data">
-                    <div><img :src="doctor.uploaded_photo ? '/storage/' + doctor.uploaded_photo : doctor.photo" :alt="doctor.name" class="img-size"></div>
+                <div v-for="doctor in results" class="query-width">
+                    <router-link :to="{name: 'pageDocProfile', params: {id: doctor.user_id}}" class="doctor">
+                    <div>
+                        <img v-if="doctor.uploaded_photo || doctor.photo" :src="doctor.uploaded_photo ? '/storage/' + doctor.uploaded_photo : doctor.photo" :alt="doctor.name"  class="img-size">
+                        <img v-else src="../../../public/img/dottore.jpg" :alt="doctor.name" class="img-size">
+                    </div>
                     <div class="doctor_content w-100">
                         <div><strong>{{ doctor.name + ' ' + doctor.last_name}}</strong></div>
                         <div>{{ doctor.address}}</div>
                         <div>{{ doctor.phone}}</div>
                         <div>{{ doctor.email }}</div>
                     </div>
-                    <div>
-                        <router-link :to="{name: 'pageDocProfile', params: {id: doctor.id}}" class="btn btn-primary px-5">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
-                                <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
-                                <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
-                            </svg>
-                        </router-link>
-                    </div>
+                    </router-link>
                 </div>
             </div>
             <div class="sponsor_column">
@@ -56,7 +53,7 @@ export default {
         };
     },
     created() {
-        axios.get('/api/users')
+        axios.get('/api/premium')
             .then(response => {
                 console.log(response)
                 this.results = response.data.results;
@@ -85,6 +82,12 @@ export default {
             border: 2px solid black;
             border-radius: 1rem;
             padding: .3rem;
+            text-decoration: none;
+            color: black;
+            &:hover {
+                background-color: rgba(245, 245, 245, 0.726);
+                transform: scale(1.02)
+            }
         }
 
         .doctor_content {
@@ -116,4 +119,30 @@ export default {
         border-radius: 100%;
     }
 
+    @media screen and (max-width: 1100px) {
+        .grid_flex {
+            display: flex;
+            flex-direction: column;
+        }
+        .query-width {
+            width: 100%;
+            .doctor {
+                width: 100%;
+                margin: 1rem 0;
+            }
+        }
+        .sponsor_column {
+            width: 100%;
+        }
+    }
+
+    @media screen and (max-width: 570px) {
+        .doctor {
+            flex-direction: column;
+            justify-content: center;
+        }
+        .doctor_content {
+           text-align: center;
+        }
+    }
 </style>

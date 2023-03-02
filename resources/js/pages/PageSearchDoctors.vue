@@ -16,7 +16,8 @@
             <div class="row g-3">
                 <div  v-for="doctor in results.data" :key="doctor.id" class="col-sm-6 col-md-4" >
                     <div class="card h-100 overflow-hidden">
-                        <img :src="doctor.uploaded_photo ? '/storage/' + doctor.uploaded_photo : doctor.photo" :alt="doctor.name" class="img-size">
+                        <img v-if="doctor.uploaded_photo || doctor.photo" :src="doctor.uploaded_photo ? '/storage/' + doctor.uploaded_photo : doctor.photo" :alt="doctor.name"  class="img-size">
+                        <img v-else src="../../../public/img/dottore.jpg" :alt="doctor.name" class="img-size">
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title text-center">{{ doctor.name + ' ' + doctor.last_name}}</h5>
                             <p class="card-text h-100">{{ doctor.services }}</p>
@@ -59,7 +60,8 @@
             <div class="row g-3">
                 <div  v-for="doctor in doctors" :key="doctor.id" class="col-sm-6 col-md-4">
                     <div class="card h-100 overflow-hidden">
-                        <img :src="doctor.uploaded_photo ? '/storage/' + doctor.uploaded_photo : doctor.photo" :alt="doctor.name" class="img-size">
+                        <img v-if="doctor.uploaded_photo || doctor.photo" :src="doctor.uploaded_photo ? '/storage/' + doctor.uploaded_photo : doctor.photo" :alt="doctor.name"  class="img-size">
+                        <img v-else src="../../../public/img/dottore.jpg" :alt="doctor.name" class="img-size">
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title text-center">{{ doctor.name + ' ' + doctor.last_name}}</h5>
                             <div class="d-flex flex-wrap h-100 align-items-center justify-content-center">
@@ -102,6 +104,7 @@ export default {
                 .then(response => {
                     this.results = response.data.results;
                     this.isLoading = false;
+                    scrollTo(0,0);
                 });
             },
             searchDoctors() {
@@ -144,13 +147,12 @@ export default {
     }
 
     .img-size {
-        max-height: 285px;
+        width: 250px;
+        height: 250px;
         object-fit: cover;
         object-position: center;
-        margin: auto;
-        width: 70%;
-        height: 300px;
         border-radius: 100%;
+        margin: auto;
         margin-top: 15px;
     }
 
@@ -165,5 +167,18 @@ export default {
 
     .card {
         background-color: rgba($color: #ffff, $alpha: 0.6);
+    }
+
+    @media screen and (max-width: 990px) {
+        .img-size {
+            width: 150px;
+            height: 150px;
+        }
+    }
+    @media screen and (max-width: 574px) {
+        .img-size {
+            width: 250px;
+            height: 250px;
+        }
     }
 </style>

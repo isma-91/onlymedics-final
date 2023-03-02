@@ -18,7 +18,9 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-// HOME (PageHome)
+// HOME (PageHome) con medici in evidenzia
+Route::get('/premium', 'Api\UserController@premium')->name('users.premium');
+// Pagina con tutti i dottori
 Route::get('/users', 'Api\UserController@index')->name('users.index');
 // PAGINA RICERCA AVANZATA COI RISULTATI (PageSearchDoctors)
 Route::get('/users/search', 'Api\UserController@search')->name('users.search');

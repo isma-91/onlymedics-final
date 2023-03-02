@@ -38,7 +38,7 @@ class UserSeeder extends Seeder
                 'password'          => Hash::make($faker->word()),
             ]);
 
-            $timestamp = rand(strtotime("Jan 01 2019"), strtotime("Jan 01 2023"));
+            $timestamp = rand(strtotime("Feb 21 2023"), strtotime("Mar 10 2023"));
             $random_date = date('Y-m-d H:i:s',$timestamp);
 
             $user->sponsors()->attach($faker->randomElements($sponsors, rand(0, 1)), ['expiring_date'=>date($random_date)]);

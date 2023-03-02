@@ -12,6 +12,28 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+
+    public function premium(User $user)
+    {
+        //$user = User::where('id', $user)->with(['specializations'])->findOrFail($user);
+        // $doctors = User::with(['specializations','sponsors'])
+        // ->join('sponsor_user','sponsor_user.user_id','=','users.id')
+        // ->join('sponsors','sponsors.id','=','sponsor_user.sponsor_id')
+        // ->orderBy('sponsors.id','desc')->get();
+
+        $doctors = User::with('specializations','sponsors')
+        ->join('sponsor_user','sponsor_user.user_id','=','users.id')
+        ->join('sponsors','sponsors.id','=','sponsor_user.sponsor_id')
+        ->whereHas('sponsors')->where('expiring_date', '>', now()->format('Y-m-d'))
+        ->orderBy('sponsors.id','desc')
+        ->get();
+
+        return response()->json([
+            'success' => true,
+            'results' => $doctors,
+        ]);
+    }
+
     public function index(User $user)
     {
         $user = User::where('id', $user)->with(['specializations'])->findOrFail($user);

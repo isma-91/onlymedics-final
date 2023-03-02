@@ -14,8 +14,12 @@
         <div v-if="results && !isFiltered">
             <h1>Tutti i medici</h1>
             <div class="row g-3">
-                <div  v-for="doctor in results.data" :key="doctor.id" class="col-sm-6 col-md-4" >
-                    <div class="card h-100 overflow-hidden">
+                <div  v-for="doctor in results.data" :key="doctor.id" class="col-sm-6 col-md-4">
+                    <div class="card h-100 overflow-hidden"
+                        :class="{'silver': doctor.title === 'Pacchetto Silver' && doctor.expiring_date > new Date().toISOString().slice(0, 10),
+                            gold: doctor.title == 'Pacchetto Gold' && doctor.expiring_date > new Date().toISOString().slice(0, 10),
+                            platinum: doctor.title == 'Pacchetto Platinum'&& doctor.expiring_date > new Date().toISOString().slice(0, 10)}"
+                    >
                         <img v-if="doctor.uploaded_photo || doctor.photo" :src="doctor.uploaded_photo ? '/storage/' + doctor.uploaded_photo : doctor.photo" :alt="doctor.name"  class="img-size">
                         <img v-else src="../../../public/img/dottore.jpg" :alt="doctor.name" class="img-size">
                         <div class="card-body d-flex flex-column">
@@ -59,7 +63,11 @@
             <h1>Medici filtrati per: {{ this.specialization }}</h1>
             <div class="row g-3">
                 <div  v-for="doctor in doctors" :key="doctor.id" class="col-sm-6 col-md-4">
-                    <div class="card h-100 overflow-hidden">
+                    <div class="card h-100 overflow-hidden"
+                    :class="{'silver': doctor.title === 'Pacchetto Silver' && doctor.expiring_date > new Date().toISOString().slice(0, 10),
+                            gold: doctor.title == 'Pacchetto Gold' && doctor.expiring_date > new Date().toISOString().slice(0, 10),
+                            platinum: doctor.title == 'Pacchetto Platinum'&& doctor.expiring_date > new Date().toISOString().slice(0, 10)}"
+                    >
                         <img v-if="doctor.uploaded_photo || doctor.photo" :src="doctor.uploaded_photo ? '/storage/' + doctor.uploaded_photo : doctor.photo" :alt="doctor.name"  class="img-size">
                         <img v-else src="../../../public/img/dottore.jpg" :alt="doctor.name" class="img-size">
                         <div class="card-body d-flex flex-column">
@@ -103,6 +111,7 @@ export default {
             axios.get('/api/users?page=' + page)
                 .then(response => {
                     this.results = response.data.results;
+                    console.log(this.results.data)
                     this.isLoading = false;
                     scrollTo(0,0);
                 });
@@ -117,6 +126,7 @@ export default {
                     },
                 }).then(response => {
                     this.doctors = response.data.results;
+                    //console.log( this.doctors);
                 }).catch(error => {
                     console.log(error);
                 });

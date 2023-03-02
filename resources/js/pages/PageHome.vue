@@ -21,7 +21,9 @@
         <div class="grid_flex" v-if="results">
             <div class="doctor_column">
                 <div v-for="doctor in results" class="query-width">
-                    <router-link :to="{name: 'pageDocProfile', params: {id: doctor.user_id}}" class="doctor">
+                    <router-link :to="{name: 'pageDocProfile', params: {id: doctor.user_id}}" class="doctor"
+                        :class="{silver: doctor.title == 'Pacchetto Silver', gold: doctor.title == 'Pacchetto Gold', platinum: doctor.title == 'Pacchetto Platinum'}"
+                    >
                     <div>
                         <img v-if="doctor.uploaded_photo || doctor.photo" :src="doctor.uploaded_photo ? '/storage/' + doctor.uploaded_photo : doctor.photo" :alt="doctor.name"  class="img-size">
                         <img v-else src="../../../public/img/dottore.jpg" :alt="doctor.name" class="img-size">
@@ -55,9 +57,9 @@ export default {
     created() {
         axios.get('/api/premium')
             .then(response => {
-                console.log(response)
+                //console.log(response)
                 this.results = response.data.results;
-                console.log(results)
+                //console.log(results)
         })
             .catch(error => {
                 console.log(error);
@@ -71,9 +73,15 @@ export default {
     .grid_flex {
         display: flex;
     }
+
     .doctor_column {
         flex-grow: 2;
-        .doctor {
+        .doctor_content {
+            font-size: 1.5rem;
+        }
+    }
+
+    .doctor {
             display: flex;
             align-items: center;
             gap: 1rem;
@@ -89,11 +97,6 @@ export default {
                 transform: scale(1.02)
             }
         }
-
-        .doctor_content {
-            font-size: 1.5rem;
-        }
-    }
 
     .sponsor_column {
         width: 300px;

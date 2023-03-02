@@ -92,9 +92,10 @@ export default {
             padding: .3rem;
             text-decoration: none;
             color: black;
+            transition: all 0.3s ease-in-out;
             &:hover {
-                background-color: rgba(245, 245, 245, 0.726);
-                transform: scale(1.02)
+                transform: scale(1.02);
+                filter: brightness(110%);
             }
         }
 

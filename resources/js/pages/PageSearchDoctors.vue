@@ -177,6 +177,11 @@ export default {
 
     .card {
         background-color: rgba($color: #ffff, $alpha: 0.6);
+        transition: all 0.3s ease-in-out;
+            &:hover {
+                transform: scale(1.02);
+                filter: brightness(105%);
+            }
     }
 
     @media screen and (max-width: 990px) {

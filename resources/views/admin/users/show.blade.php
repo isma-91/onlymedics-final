@@ -21,13 +21,13 @@
             @endif
         </div>
         <div class="container doctor_container">
-            <div class="text-capitalize mb-2 d-flex flex-column align-items-center flex-md-row"><div class="text-uppercase fw-bold">nome:</div> {{ $user->name }}</div>
-            <div class="text-capitalize mb-2 d-flex flex-column align-items-center flex-md-row"><div class="text-uppercase fw-bold">Cognome: </div>{{$user->last_name}}</div>
-            <div class="text-capitalize mb-2 d-flex flex-column align-items-center flex-md-row"><div class="text-uppercase fw-bold">indirizzo: </div>{{ $user->address }}</div>
-            <div class="text-capitalize mb-2 d-flex flex-column align-items-center flex-md-row"><div class="text-uppercase fw-bold">cellulare: </div>{{ $user->phone}}</div>
-            <div class="text-capitalize mb-2 d-flex flex-column align-items-center flex-md-row"><div class="text-uppercase fw-bold">Email: </div>{{ $user->email}}</div>
-            <div class="text-capitalize mb-2 d-flex flex-column align-items-center flex-md-row"><div class="text-uppercase fw-bold">Servizi: </div>{{ $user->services}}</strong></div>
-            <div class="text-uppercase fw-bold me-2 text-center">Specializzazioni:</div>
+            <div class="text-capitalize mb-2 d-flex flex-column align-items-center flex-md-row"><div class="text-uppercase me-md-2 fw-bold">nome<span class="d-none d-md-inline">:</span></div> {{ $user->name }}</div>
+            <div class="text-capitalize mb-2 d-flex flex-column align-items-center flex-md-row"><div class="text-uppercase me-md-2 fw-bold">Cognome<span class="d-none d-md-inline">:</span> </div>{{$user->last_name}}</div>
+            <div class="text-capitalize mb-2 d-flex flex-column align-items-center flex-md-row"><div class="text-uppercase me-md-2 fw-bold">indirizzo<span class="d-none d-md-inline">:</span> </div>{{ $user->address }}</div>
+            <div class="text-capitalize mb-2 d-flex flex-column align-items-center flex-md-row"><div class="text-uppercase me-md-2 fw-bold">cellulare<span class="d-none d-md-inline">:</span> </div>{{ $user->phone}}</div>
+            <div class="mb-2 d-flex flex-column align-items-center flex-md-row"><div class="text-uppercase me-md-2 fw-bold">Email<span class="d-none d-md-inline">:</span> </div>{{ $user->email}}</div>
+            <div class="mb-2 d-flex flex-column align-items-center flex-md-row"><div class="text-uppercase me-md-2 fw-bold">Servizi<span class="d-none d-md-inline">:</span> </div>{{ $user->services}}</strong></div>
+            <div class="fw-bold me-2 text-center">Specializzazioni<span class="d-none d-md-inline">:</span></div>
                 <div class="specialization_container mt-2 d-flex flex-wrap justify-content-center">
                     @foreach ($user->specializations as $specialization)
                         <div class="me-1 mod_specialization mt-1">{{ $specialization->name }}</div>

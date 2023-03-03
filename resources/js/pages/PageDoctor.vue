@@ -4,6 +4,7 @@
             <h1>Dr.{{results.user.name + ' ' + results.user.last_name}}</h1>
             <img v-if="results.user.uploaded_photo || results.user.photo" :src="results.user.uploaded_photo ? '/storage/' + results.user.uploaded_photo : results.user.photo" :alt="results.user.name"  class="img-size my-2">
             <img v-else src="../../../public/img/dottore.jpg" :alt="results.user.name" class="img-size">
+            <h2>{{results.user.email}}</h2>
         </div>
         <h2 class="text-center">Specializzato in: </h2>
         <ul class="specialization_container">

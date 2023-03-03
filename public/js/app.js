@@ -5722,7 +5722,7 @@ var render = function render() {
       src: __webpack_require__(/*! ../../../public/img/dottore.jpg */ "./public/img/dottore.jpg"),
       alt: _vm.results.user.name
     }
-  })]), _vm._v(" "), _c("h2", {
+  }), _vm._v(" "), _c("h2", [_vm._v(_vm._s(_vm.results.user.email))])]), _vm._v(" "), _c("h2", {
     staticClass: "text-center"
   }, [_vm._v("Specializzato in: ")]), _vm._v(" "), _c("ul", {
     staticClass: "specialization_container"

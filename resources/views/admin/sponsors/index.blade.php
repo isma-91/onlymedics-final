@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <table class="table table-striped">
+    {{-- <table class="table table-striped">
         <thead>
             <tr>
                 <th scope="col">Titolo</th>
@@ -21,5 +21,23 @@
                 </tr>
             @endforeach
         </tbody>
-    </table>
+    </table> --}}
+    <div class="container d-flex justify-content-center flex-wrap">
+
+            @foreach ($sponsors as $sponsor)
+                <div class="box premium-card">
+                    <div class="content">
+                        <h2>{{ $sponsor->title }}</h2>
+                        <p>
+                            <div>Durata: {{ $sponsor->duration }}h</div>
+                            <div>Costo: {{ $sponsor->cost}}€</div>
+                        </p>
+                        <a href="{{ route('admin.sponsors.show', ['sponsor' => $sponsor]) }}">Visualizza dettagli</a>
+                    </div>
+                </div>
+            @endforeach
+
+</div>
 @endsection
+
+

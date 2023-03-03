@@ -68,46 +68,46 @@
                     <div class="slider">
                         <div class="slide-track">
                             <div class="slide">
-                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/1.png" height="100" width="250" alt="" />
+                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/1.png" alt="" />
                             </div>
                             <div class="slide">
-                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/2.png" height="100" width="250" alt="" />
+                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/2.png" alt="" />
                             </div>
                             <div class="slide">
-                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/3.png" height="100" width="250" alt="" />
+                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/3.png" alt="" />
                             </div>
                             <div class="slide">
-                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/4.png" height="100" width="250" alt="" />
+                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/4.png" alt="" />
                             </div>
                             <div class="slide">
-                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/5.png" height="100" width="250" alt="" />
+                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/5.png" alt="" />
                             </div>
                             <div class="slide">
-                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/6.png" height="100" width="250" alt="" />
+                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/6.png" alt="" />
                             </div>
                             <div class="slide">
-                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/7.png" height="100" width="250" alt="" />
+                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/7.png" alt="" />
                             </div>
                             <div class="slide">
-                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/1.png" height="100" width="250" alt="" />
+                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/1.png" alt="" />
                             </div>
                             <div class="slide">
-                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/2.png" height="100" width="250" alt="" />
+                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/2.png" alt="" />
                             </div>
                             <div class="slide">
-                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/3.png" height="100" width="250" alt="" />
+                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/3.png" alt="" />
                             </div>
                             <div class="slide">
-                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/4.png" height="100" width="250" alt="" />
+                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/4.png" alt="" />
                             </div>
                             <div class="slide">
-                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/5.png" height="100" width="250" alt="" />
+                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/5.png" alt="" />
                             </div>
                             <div class="slide">
-                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/6.png" height="100" width="250" alt="" />
+                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/6.png" alt="" />
                             </div>
                             <div class="slide">
-                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/7.png" height="100" width="250" alt="" />
+                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/7.png" alt="" />
                             </div>
                         </div>
                     </div>
@@ -284,7 +284,12 @@ export default {
                     .slide {
                         height: 100px;
                         width: 250px;
-                        margin-bottom: 20px;
+                        margin: 10px auto;
+
+                        img {
+                            width: 250px;
+                            height: 100px;
+                        }
                     }
                 }
         }
@@ -397,7 +402,7 @@ export default {
     .text-1 {
         color: white;
         font-size: 1.5rem;
-        text-align: justify;
+        text-align: center;
         padding: 8px 12px;
         position: absolute;
         width: 100%;
@@ -411,7 +416,7 @@ export default {
     .text-2 {
         color: white;
         font-size: 1.5rem;
-        text-align: justify;
+        text-align: center;
         padding: 8px 12px;
         position: absolute;
         width: 100%;
@@ -425,7 +430,7 @@ export default {
     .text-3 {
         color: white;
         font-size: 1.5rem;
-        text-align: justify;
+        text-align: center;
         padding: 8px 12px;
         position: absolute;
         width: 100%;
@@ -552,6 +557,7 @@ export default {
                     .slide {
                         height: 100px;
                         width: 250px;
+                        margin: 0   ;
                     }
                 }
             }

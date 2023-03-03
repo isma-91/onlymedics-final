@@ -1,8 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <h1>Pagamento</h1>
+    <div class="container p-5 sponsor-payment
+        @if($value == 'Pacchetto Silver')
+            title-silver
+        @elseif($value == 'Pacchetto Gold')
+            title-gold
+        @elseif($value == 'Pacchetto Platinum')
+            title-platinum
+        @endif">
+        <h1 class="text-center">Pagamento</h1>
 
         @if (session('success_message'))
             <div class="alert alert-success">
@@ -23,7 +30,7 @@
             @csrf
             <section>
                 <label for="amount">
-                    <span class="input-label">Stai acquistando il pacchetto {{ strtoupper($value) }}.</span>
+                    <span class="input-label">Stai acquistando il {{ strtoupper($value) }}.</span>
                     <div class="input-wrapper amount-wrapper">
                         <input id="amount" name="amount" type="hidden" min="1" placeholder="Amount" value="@if ($value=='Pacchetto Silver' ) 2.99 @elseif ($value=='Pacchetto Gold')5.99 @elseif($value=='Pacchetto Platinum')9.99 @endif" readonly>
                     </div>
@@ -33,9 +40,10 @@
                     <div id="bt-dropin"></div>
                 </div>
             </section>
-
-            <input id="nonce" name="payment_method_nonce" type="hidden" />
-            <button class="btn btn-success text-center" type="submit"><span>Pagamento</span></button>
+            <div class="text-center mt-3">
+                <input id="nonce" name="payment_method_nonce" type="hidden" />
+                <button class="btn btn-success text-center" type="submit"><span>Pagamento</span></button>
+            </div>
         </form>
 
     </div>

@@ -1,6 +1,4 @@
 Cose da fare:
-    Aggiungere la pubblicitá 
-    Provare a mettere le statistiche nella Dashboard e stilizarla un pó
-    Migliorare ancora il Front-End
+    Aggiungere il footer
     Provare a mettere le stelline quando lasci una recensione 
-    Provare a mettere la Media Voti in PageDoctor
+    Provare a mettere la Media Voti in PageDoctor e Email

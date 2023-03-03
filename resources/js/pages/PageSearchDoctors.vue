@@ -1,5 +1,5 @@
 <template>
-    <div class="grid">
+    <div class="grid container">
         <div class="grid-int d-flex justify-content-center align-items-center">
             <input
             type="search"

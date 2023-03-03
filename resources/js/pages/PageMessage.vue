@@ -1,5 +1,5 @@
 <template >
-    <div v-if="objDoc">
+    <div v-if="objDoc" class="container mx-auto">
         <h1>Scrivi un messaggio al Dr.{{objDoc.user.name + ' ' + objDoc.user.last_name}}</h1>
         <form
         :action="`/api/users/${id}/message`"

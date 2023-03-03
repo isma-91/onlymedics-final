@@ -5124,7 +5124,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      results: null
+      results: null,
+      slideIndex: 1
     };
   },
   created: function created() {
@@ -5133,8 +5134,62 @@ __webpack_require__.r(__webpack_exports__);
       //console.log(response)
       _this.results = response.data.results;
       //console.log(results)
+      _this.showSlides(_this.slideIndex);
     })["catch"](function (error) {
       console.log(error);
+    });
+    setInterval(function () {
+      _this.plusSlides(1);
+    }, 2 * 1000);
+  },
+  methods: {
+    plusSlides: function plusSlides(n) {
+      this.showSlides(this.slideIndex += n);
+    },
+    currentSlide: function currentSlide(n) {
+      this.showSlides(this.slideIndex = n);
+    },
+    showSlides: function showSlides(n) {
+      var i;
+      var slides = document.getElementsByClassName("mySlides");
+      var dots = document.getElementsByClassName("dot");
+      if (n > slides.length) {
+        this.slideIndex = 1;
+      }
+      if (n < 1) {
+        this.slideIndex = slides.length;
+      }
+      for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+      }
+      slides[this.slideIndex - 1].style.display = "block";
+      dots[this.slideIndex - 1].className += " active";
+    }
+  },
+  mounted: function mounted() {
+    var _this2 = this;
+    //Aggiungi il listener di eventi clic sui punti
+    var dots = document.getElementsByClassName("dot");
+    var _loop = function _loop(i) {
+      dots[i].addEventListener("click", function () {
+        _this2.currentSlide(i + 1);
+      });
+    };
+    for (var i = 0; i < dots.length; i++) {
+      _loop(i);
+    }
+
+    // Aggiungi il listener di eventi clic sulle frecce
+    var prevArrow = document.getElementById("prev");
+    var nextArrow = document.getElementById("next");
+    prevArrow.addEventListener("click", function () {
+      _this2.plusSlides(-1);
+    });
+    nextArrow.addEventListener("click", function () {
+      _this2.plusSlides(1);
     });
   }
 });
@@ -5388,9 +5443,7 @@ var render = function render() {
     _c = _vm._self._c;
   return _c("div", [_c("header", {
     staticClass: "sticky-top"
-  }, [_c("NavBar")], 1), _vm._v(" "), _c("main", [_c("div", {
-    staticClass: "container"
-  }, [_c("router-view")], 1)]), _vm._v(" "), _c("footer")]);
+  }, [_c("NavBar")], 1), _vm._v(" "), _c("main", [_c("router-view")], 1), _vm._v(" "), _c("footer")]);
 };
 var staticRenderFns = [];
 render._withStripped = true;
@@ -5487,7 +5540,9 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _vm.results ? _c("div", [_c("div", {
+  return _vm.results ? _c("div", {
+    staticClass: "container"
+  }, [_c("div", {
     staticClass: "d-flex flex-column justify-content-center align-items-center"
   }, [_c("h1", [_vm._v("Dr." + _vm._s(_vm.results.user.name + " " + _vm.results.user.last_name))]), _vm._v(" "), _vm.results.user.uploaded_photo || _vm.results.user.photo ? _c("img", {
     staticClass: "img-size my-2",
@@ -5588,12 +5643,10 @@ var render = function render() {
     _c = _vm._self._c;
   return _c("div", {
     staticClass: "grid"
-  }, [_c("h1", {
-    staticClass: "text-center"
-  }, [_vm._v("Benvenuto su Only Doctors")]), _vm._v(" "), _c("h2", {
+  }, [_vm._m(0), _vm._v(" "), _c("h2", {
     staticClass: "text-center"
   }, [_vm._v("Medici in evidenza")]), _vm._v(" "), _vm.results ? _c("div", {
-    staticClass: "grid_flex"
+    staticClass: "grid_flex container"
   }, [_c("div", {
     staticClass: "doctor_column"
   }, _vm._l(_vm.results, function (doctor) {
@@ -5629,16 +5682,218 @@ var render = function render() {
     })]), _vm._v(" "), _c("div", {
       staticClass: "doctor_content w-100"
     }, [_c("div", [_c("strong", [_vm._v(_vm._s(doctor.name + " " + doctor.last_name))])]), _vm._v(" "), _c("div", [_vm._v(_vm._s(doctor.address))]), _vm._v(" "), _c("div", [_vm._v(_vm._s(doctor.phone))]), _vm._v(" "), _c("div", [_vm._v(_vm._s(doctor.email))])])])], 1);
-  }), 0), _vm._v(" "), _vm._m(0)]) : _vm._e()]);
+  }), 0), _vm._v(" "), _vm._m(1)]) : _vm._e()]);
 };
 var staticRenderFns = [function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
+    staticClass: "header-container"
+  }, [_c("h1", {
+    staticClass: "text-center"
+  }, [_vm._v("Benvenuto su Only Doctors")]), _vm._v(" "), _c("div", {
+    staticClass: "slideshow-container mx-1"
+  }, [_c("div", {
+    staticClass: "slideshow-content"
+  }, [_c("div", {
+    staticClass: "mySlides fade"
+  }, [_c("img", {
+    staticStyle: {
+      width: "100%"
+    },
+    attrs: {
+      src: "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/e3e1785d-efba-4e9c-9d54-56f430625edf/dfqpaf0-96805291-e92c-492a-8cd2-9cf6fd632823.jpg/v1/fill/w_1280,h_406,q_75,strp/2_by_nardyukkk_dfqpaf0-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NDA2IiwicGF0aCI6IlwvZlwvZTNlMTc4NWQtZWZiYS00ZTljLTlkNTQtNTZmNDMwNjI1ZWRmXC9kZnFwYWYwLTk2ODA1MjkxLWU5MmMtNDkyYS04Y2QyLTljZjZmZDYzMjgyMy5qcGciLCJ3aWR0aCI6Ijw9MTI4MCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.SSeDRQpBBFPJhuoBR1c76bR4ZXav5biwJvJxdiCwBPY"
+    }
+  }), _vm._v(" "), _c("div", {
+    staticClass: "text-area-1"
+  }, [_c("div", {
+    staticClass: "text-1"
+  }, [_vm._v("Only Doctors, un modo facile e veloce online per accedere alle disponibilità del personale sanitario")])])]), _vm._v(" "), _c("div", {
+    staticClass: "mySlides fade"
+  }, [_c("img", {
+    staticStyle: {
+      width: "100%"
+    },
+    attrs: {
+      src: "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/e3e1785d-efba-4e9c-9d54-56f430625edf/dfqpaff-2143e698-0099-4df9-b408-d10ffe24b895.jpg/v1/fill/w_1280,h_406,q_75,strp/3_by_nardyukkk_dfqpaff-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NDA2IiwicGF0aCI6IlwvZlwvZTNlMTc4NWQtZWZiYS00ZTljLTlkNTQtNTZmNDMwNjI1ZWRmXC9kZnFwYWZmLTIxNDNlNjk4LTAwOTktNGRmOS1iNDA4LWQxMGZmZTI0Yjg5NS5qcGciLCJ3aWR0aCI6Ijw9MTI4MCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.TWIm8SkV1YzM9IiKZ7KVT2eSzftsLnEQ1NJ1wtGzm80"
+    }
+  }), _vm._v(" "), _c("div", {
+    staticClass: "text-area-2"
+  }, [_c("div", {
+    staticClass: "text-2"
+  }, [_vm._v("Visualizza le recensioni dei medici e gestisci appuntamenti per te e i tuoi familiari su un'unica app")])])]), _vm._v(" "), _c("div", {
+    staticClass: "mySlides fade"
+  }, [_c("img", {
+    staticClass: "img-slide",
+    staticStyle: {
+      width: "100%"
+    },
+    attrs: {
+      src: "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/e3e1785d-efba-4e9c-9d54-56f430625edf/dfqpact-ddbb0ba9-57fb-4d0d-9457-deab467b4dab.jpg/v1/fill/w_1280,h_406,q_75,strp/1_by_nardyukkk_dfqpact-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NDA2IiwicGF0aCI6IlwvZlwvZTNlMTc4NWQtZWZiYS00ZTljLTlkNTQtNTZmNDMwNjI1ZWRmXC9kZnFwYWN0LWRkYmIwYmE5LTU3ZmItNGQwZC05NDU3LWRlYWI0NjdiNGRhYi5qcGciLCJ3aWR0aCI6Ijw9MTI4MCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.aFRdaz_9wnEC5185nlDpozTBvKIZOHXaJ5ZBnW4bwA4"
+    }
+  }), _vm._v(" "), _c("div", {
+    staticClass: "text-area-3"
+  }, [_c("div", {
+    staticClass: "text-3"
+  }, [_vm._v("Scegli il medico giusto per te tramite il nostro portale per trovare la soluzione adatta alla tua salute")])])])])]), _vm._v(" "), _c("div", {
+    staticClass: "dots",
+    staticStyle: {
+      "text-align": "center"
+    }
+  }, [_c("span", {
+    staticClass: "dot",
+    attrs: {
+      onclick: "currentSlide(1)"
+    }
+  }), _vm._v(" "), _c("span", {
+    staticClass: "dot",
+    attrs: {
+      onclick: "currentSlide(2)"
+    }
+  }), _vm._v(" "), _c("span", {
+    staticClass: "dot",
+    attrs: {
+      onclick: "currentSlide(3)"
+    }
+  })])]);
+}, function () {
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", {
     staticClass: "sponsor_column"
   }, [_c("div", {
     staticClass: "sponsor_content"
-  }, [_vm._v("\n                pubblicita'\n            ")])]);
+  }, [_c("div", {
+    staticClass: "slider"
+  }, [_c("div", {
+    staticClass: "slide-track"
+  }, [_c("div", {
+    staticClass: "slide"
+  }, [_c("img", {
+    attrs: {
+      src: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/1.png",
+      height: "100",
+      width: "250",
+      alt: ""
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "slide"
+  }, [_c("img", {
+    attrs: {
+      src: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/2.png",
+      height: "100",
+      width: "250",
+      alt: ""
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "slide"
+  }, [_c("img", {
+    attrs: {
+      src: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/3.png",
+      height: "100",
+      width: "250",
+      alt: ""
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "slide"
+  }, [_c("img", {
+    attrs: {
+      src: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/4.png",
+      height: "100",
+      width: "250",
+      alt: ""
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "slide"
+  }, [_c("img", {
+    attrs: {
+      src: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/5.png",
+      height: "100",
+      width: "250",
+      alt: ""
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "slide"
+  }, [_c("img", {
+    attrs: {
+      src: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/6.png",
+      height: "100",
+      width: "250",
+      alt: ""
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "slide"
+  }, [_c("img", {
+    attrs: {
+      src: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/7.png",
+      height: "100",
+      width: "250",
+      alt: ""
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "slide"
+  }, [_c("img", {
+    attrs: {
+      src: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/1.png",
+      height: "100",
+      width: "250",
+      alt: ""
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "slide"
+  }, [_c("img", {
+    attrs: {
+      src: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/2.png",
+      height: "100",
+      width: "250",
+      alt: ""
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "slide"
+  }, [_c("img", {
+    attrs: {
+      src: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/3.png",
+      height: "100",
+      width: "250",
+      alt: ""
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "slide"
+  }, [_c("img", {
+    attrs: {
+      src: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/4.png",
+      height: "100",
+      width: "250",
+      alt: ""
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "slide"
+  }, [_c("img", {
+    attrs: {
+      src: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/5.png",
+      height: "100",
+      width: "250",
+      alt: ""
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "slide"
+  }, [_c("img", {
+    attrs: {
+      src: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/6.png",
+      height: "100",
+      width: "250",
+      alt: ""
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "slide"
+  }, [_c("img", {
+    attrs: {
+      src: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/7.png",
+      height: "100",
+      width: "250",
+      alt: ""
+    }
+  })])])])])]);
 }];
 render._withStripped = true;
 
@@ -5660,7 +5915,9 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _vm.objDoc ? _c("div", [_c("h1", [_vm._v("Scrivi un messaggio al Dr." + _vm._s(_vm.objDoc.user.name + " " + _vm.objDoc.user.last_name))]), _vm._v(" "), _c("form", {
+  return _vm.objDoc ? _c("div", {
+    staticClass: "container mx-auto"
+  }, [_c("h1", [_vm._v("Scrivi un messaggio al Dr." + _vm._s(_vm.objDoc.user.name + " " + _vm.objDoc.user.last_name))]), _vm._v(" "), _c("form", {
     staticClass: "row g-3 needs-validation",
     attrs: {
       action: "/api/users/".concat(_vm.id, "/message"),
@@ -5913,7 +6170,9 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _vm.objDoc ? _c("div", [_c("h1", [_vm._v("Lascia una recensione per il Dr." + _vm._s(_vm.objDoc.user.name + " " + _vm.objDoc.user.last_name))]), _vm._v(" "), _c("form", {
+  return _vm.objDoc ? _c("div", {
+    staticClass: "container mx-auto"
+  }, [_c("h1", [_vm._v("Lascia una recensione per il Dr." + _vm._s(_vm.objDoc.user.name + " " + _vm.objDoc.user.last_name))]), _vm._v(" "), _c("form", {
     staticClass: "row g-3 needs-validation",
     attrs: {
       action: "/api/users/".concat(_vm.id, "/review"),
@@ -6138,7 +6397,7 @@ var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", {
-    staticClass: "grid"
+    staticClass: "grid container"
   }, [_c("div", {
     staticClass: "grid-int d-flex justify-content-center align-items-center"
   }, [_c("input", {
@@ -6333,7 +6592,7 @@ var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", {
-    staticClass: "text-center pt-3"
+    staticClass: "text-center pt-3 container mx-auto"
   }, [_c("h1", [_vm._v("OPERAZIONE ESEGUITA CON SUCCESSO")]), _vm._v(" "), _c("router-link", {
     attrs: {
       to: {
@@ -11755,7 +12014,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".grid_flex[data-v-13e03f97] {\n  display: flex;\n}\n.doctor_column[data-v-13e03f97] {\n  flex-grow: 2;\n}\n.doctor_column .doctor_content[data-v-13e03f97] {\n  font-size: 1.5rem;\n}\n.doctor[data-v-13e03f97] {\n  display: flex;\n  align-items: center;\n  gap: 1rem;\n  background-color: white;\n  margin: 1rem;\n  border: 2px solid black;\n  border-radius: 1rem;\n  padding: 0.3rem;\n  text-decoration: none;\n  color: black;\n  transition: all 0.3s ease-in-out;\n}\n.doctor[data-v-13e03f97]:hover {\n  transform: scale(1.02);\n  filter: brightness(110%);\n}\n.sponsor_column[data-v-13e03f97] {\n  width: 300px;\n  flex-grow: 1;\n  font-size: 2rem;\n  margin: 1rem 0;\n}\n.sponsor_column .sponsor_content[data-v-13e03f97] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  background-color: aqua;\n  width: 100%;\n  height: 100%;\n  border: 2px solid black;\n  border-radius: 1rem;\n}\n.img-size[data-v-13e03f97] {\n  width: 200px;\n  height: 200px;\n  -o-object-fit: cover;\n     object-fit: cover;\n  -o-object-position: center;\n     object-position: center;\n  border-radius: 100%;\n}\n@media screen and (max-width: 1100px) {\n.grid_flex[data-v-13e03f97] {\n    display: flex;\n    flex-direction: column;\n}\n.query-width[data-v-13e03f97] {\n    width: 100%;\n}\n.query-width .doctor[data-v-13e03f97] {\n    width: 100%;\n    margin: 1rem 0;\n}\n.sponsor_column[data-v-13e03f97] {\n    width: 100%;\n}\n}\n@media screen and (max-width: 570px) {\n.doctor[data-v-13e03f97] {\n    flex-direction: column;\n    justify-content: center;\n}\n.doctor_content[data-v-13e03f97] {\n    text-align: center;\n}\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".grid_flex[data-v-13e03f97] {\n  display: flex;\n}\n.doctor_column[data-v-13e03f97] {\n  flex-grow: 2;\n}\n.doctor_column .doctor_content[data-v-13e03f97] {\n  font-size: 1.5rem;\n}\n.doctor[data-v-13e03f97] {\n  display: flex;\n  align-items: center;\n  gap: 1rem;\n  background-color: white;\n  margin: 1rem;\n  border: 2px solid black;\n  border-radius: 1rem;\n  padding: 0.3rem;\n  text-decoration: none;\n  color: black;\n  transition: all 0.3s ease-in-out;\n}\n.doctor[data-v-13e03f97]:hover {\n  transform: scale(1.02);\n  filter: brightness(110%);\n}\n.sponsor_column[data-v-13e03f97] {\n  position: sticky;\n  top: 118px;\n  right: 8px;\n  flex-grow: 1;\n  font-size: 2rem;\n  height: 865px;\n}\n.sponsor_column .sponsor_content[data-v-13e03f97] {\n  width: 100%;\n  height: 100%;\n}\n@keyframes scroll-13e03f97 {\n0% {\n    transform: translateY(0);\n}\n100% {\n    transform: translateY(-700px);\n}\n}\n.sponsor_column .sponsor_content .slider[data-v-13e03f97] {\n  background: white;\n  box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.125);\n  height: 75%;\n  width: 100%;\n  overflow: hidden;\n  position: relative;\n  border-radius: 1rem;\n  margin-top: 1rem;\n}\n.sponsor_column .sponsor_content .slider[data-v-13e03f97]::before, .sponsor_column .sponsor_content .slider[data-v-13e03f97]::after {\n  background: linear-gradient(to bottom, rgb(255, 255, 255) 0%, rgba(255, 255, 255, 0) 100%);\n  content: \"\";\n  height: 100px;\n  position: absolute;\n  width: 250px;\n  z-index: 2;\n}\n.sponsor_column .sponsor_content .slider[data-v-13e03f97]::after {\n  bottom: 0;\n  left: 0;\n  transform: rotateZ(180deg);\n}\n.sponsor_column .sponsor_content .slider[data-v-13e03f97]::before {\n  top: 0;\n  left: 0;\n}\n.sponsor_column .sponsor_content .slider .slide-track[data-v-13e03f97] {\n  animation: scroll-13e03f97 40s linear infinite;\n  display: flex;\n  flex-direction: column;\n  height: 1400px;\n}\n.sponsor_column .sponsor_content .slider .slide[data-v-13e03f97] {\n  height: 100px;\n  width: 250px;\n  margin-bottom: 20px;\n}\n.img-size[data-v-13e03f97] {\n  width: 200px;\n  height: 200px;\n  -o-object-fit: cover;\n     object-fit: cover;\n  -o-object-position: center;\n     object-position: center;\n  border-radius: 100%;\n}\n.img-slide[data-v-13e03f97] {\n  filter: blur(2px);\n}\n.header-container .dots[data-v-13e03f97] {\n  position: relative;\n  top: -30px;\n}\n.slideshow-container[data-v-13e03f97] {\n  display: flex;\n  justify-content: center;\n}\n.slideshow-content[data-v-13e03f97] {\n  width: 1500px;\n  position: relative;\n  border: 3px solid white;\n  border-radius: 1rem;\n  overflow: hidden;\n}\n\n/* Hide the images by default */\n.mySlides[data-v-13e03f97] {\n  animation-name: none !important;\n  opacity: 1 !important;\n}\n\n/* Next & previous buttons */\n.prev[data-v-13e03f97],\n.next[data-v-13e03f97] {\n  cursor: pointer;\n  position: absolute;\n  top: 50%;\n  width: auto;\n  margin-top: -22px;\n  padding: 16px;\n  color: white;\n  font-weight: bold;\n  font-size: 18px;\n  transition: 0.6s ease;\n  border-radius: 0 3px 3px 0;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n          user-select: none;\n}\n\n/* Position the \"next button\" to the right */\n.next[data-v-13e03f97] {\n  right: 0;\n  border-radius: 3px 0 0 3px;\n}\n\n/* On hover, add a black background color with a little bit see-through */\n.prev[data-v-13e03f97],\n.next[data-v-13e03f97] {\n  background-color: rgba(0, 0, 0, 0.8);\n}\n\n/* Caption text */\n.text-area-1[data-v-13e03f97] {\n  height: 100%;\n  width: 35%;\n  position: absolute;\n  top: 0;\n  left: 0.5rem;\n  display: flex;\n  align-items: center;\n  background-size: cover;\n  -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);\n          clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);\n}\n.text-area-2[data-v-13e03f97] {\n  height: 100%;\n  width: 30%;\n  position: absolute;\n  top: 0;\n  right: 0.5rem;\n  display: flex;\n  align-items: center;\n  background-size: cover;\n}\n.text-area-3[data-v-13e03f97] {\n  height: 100%;\n  width: 30%;\n  position: absolute;\n  left: 35%;\n  top: -2.5rem;\n  display: flex;\n  align-items: flex-end;\n  background-size: cover;\n  -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);\n          clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);\n}\n.text-1[data-v-13e03f97] {\n  color: white;\n  font-size: 1.5rem;\n  text-align: justify;\n  padding: 8px 12px;\n  position: absolute;\n  width: 100%;\n  background: rgba(38, 145, 244, 0.4);\n  -webkit-backdrop-filter: blur(3px);\n  backdrop-filter: blur(3px);\n  border: 1px solid rgba(38, 145, 244, 0.2);\n  border-radius: 1rem;\n}\n.text-2[data-v-13e03f97] {\n  color: white;\n  font-size: 1.5rem;\n  text-align: justify;\n  padding: 8px 12px;\n  position: absolute;\n  width: 100%;\n  background: rgba(50, 14, 93, 0.4);\n  -webkit-backdrop-filter: blur(3px);\n  backdrop-filter: blur(3px);\n  border: 1px solid rgba(50, 14, 93, 0.2);\n  border-radius: 1rem;\n}\n.text-3[data-v-13e03f97] {\n  color: white;\n  font-size: 1.5rem;\n  text-align: justify;\n  padding: 8px 12px;\n  position: absolute;\n  width: 100%;\n  background: rgba(172, 172, 172, 0.4);\n  -webkit-backdrop-filter: blur(3px);\n  backdrop-filter: blur(3px);\n  border: 1px solid rgba(172, 172, 172, 0.2);\n  border-radius: 1rem;\n}\n\n/* Number text (1/3 etc) */\n.numbertext[data-v-13e03f97] {\n  color: #f2f2f2;\n  font-size: 12px;\n  padding: 8px 12px;\n  position: absolute;\n  top: 0;\n}\n\n/* The dots/bullets/indicators */\n.dot[data-v-13e03f97] {\n  cursor: pointer;\n  height: 15px;\n  width: 15px;\n  margin: 0 2px;\n  background-color: #4d4c4c;\n  border-radius: 50%;\n  display: inline-block;\n  transition: background-color 0.6s ease;\n}\n.active[data-v-13e03f97],\n.dot[data-v-13e03f97]:hover {\n  background-color: #a0a0a0;\n}\n\n/* Fading animation */\n.fade[data-v-13e03f97] {\n  animation-name: fade-13e03f97;\n  animation-duration: 1.5s;\n}\n@keyframes fade-13e03f97 {\nfrom {\n    opacity: 0.4;\n}\nto {\n    opacity: 1;\n}\n}\n@media screen and (max-width: 1100px) {\n.grid_flex[data-v-13e03f97] {\n    display: flex;\n    flex-direction: column;\n}\n.query-width[data-v-13e03f97] {\n    width: 100%;\n}\n.query-width .doctor[data-v-13e03f97] {\n    width: 100%;\n    margin: 1rem 0;\n}\n.sponsor_column[data-v-13e03f97] {\n    position: sticky;\n    top: 118px;\n    right: 8px;\n    font-size: 2rem;\n    width: 100%;\n    height: 250px;\n}\n@keyframes scroll-13e03f97 {\n0% {\n      transform: translateX(0);\n}\n100% {\n      transform: translateX(-1750px);\n}\n}\n.sponsor_column .sponsor_content .slider[data-v-13e03f97] {\n    background: white;\n    box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.125);\n    height: 100px;\n    margin: auto;\n    overflow: hidden;\n    position: relative;\n    width: 100%;\n}\n.sponsor_column .sponsor_content .slider[data-v-13e03f97]::before, .sponsor_column .sponsor_content .slider[data-v-13e03f97]::after {\n    background: linear-gradient(to right, rgb(255, 255, 255) 0%, rgba(255, 255, 255, 0) 100%);\n    content: \"\";\n    height: 100px;\n    position: absolute;\n    width: 50px;\n    z-index: 2;\n}\n.sponsor_column .sponsor_content .slider[data-v-13e03f97]::after {\n    right: 0;\n    top: 0;\n    transform: rotateZ(180deg);\n}\n.sponsor_column .sponsor_content .slider[data-v-13e03f97]::before {\n    left: 0;\n    top: 0;\n}\n.sponsor_column .sponsor_content .slider .slide-track[data-v-13e03f97] {\n    animation: scroll-13e03f97 40s linear infinite;\n    display: flex;\n    flex-direction: row;\n    width: 3500px;\n}\n.sponsor_column .sponsor_content .slider .slide[data-v-13e03f97] {\n    height: 100px;\n    width: 250px;\n}\n}\n@media screen and (max-width: 570px) {\n.doctor[data-v-13e03f97] {\n    flex-direction: column;\n    justify-content: center;\n}\n.doctor_content[data-v-13e03f97] {\n    text-align: center;\n}\n}\n@media screen and (max-width: 830px) {\n.text-area-1[data-v-13e03f97], .text-area-2[data-v-13e03f97], .text-area-3[data-v-13e03f97] {\n    display: none;\n}\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

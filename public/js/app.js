@@ -5424,7 +5424,7 @@ var render = function render() {
         name: "home"
       }
     }
-  }, [_vm._v("Only Doctors")]), _vm._v(" "), _c("div", {
+  }, [_c("h1", [_vm._v("Only Doctors")])]), _vm._v(" "), _c("div", {
     staticClass: "flex-icon"
   }, [_c("router-link", {
     staticClass: "btn btn-light",
@@ -11707,7 +11707,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".header-container-up[data-v-5dd24bca] {\n  background-color: #0D6EFD;\n  display: flex;\n  color: white;\n  height: 80px;\n  font-size: 2.5rem;\n  font-family: Impact, Haettenschweiler, \"Arial Narrow Bold\", sans-serif;\n}\n.flex-icon[data-v-5dd24bca] {\n  font-size: 1.3rem;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".header-container-up[data-v-5dd24bca] {\n  background-color: #0D6EFD;\n  display: flex;\n  color: white;\n  height: 80px;\n}\n.flex-icon[data-v-5dd24bca] {\n  font-size: 1.3rem;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

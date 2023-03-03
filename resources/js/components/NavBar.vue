@@ -1,7 +1,7 @@
 <template>
     <div class="header-container-up">
         <div class="container d-flex justify-content-between align-items-center">
-            <router-link :to="{name: 'home'}" class="navbar-brand">Only Doctors</router-link>
+            <router-link :to="{name: 'home'}" class="navbar-brand"><h1>Only Doctors</h1></router-link>
             <div class="flex-icon">
                 <router-link :to="{name:'pageSearchDoctors'}" class="btn btn-light">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
@@ -35,8 +35,6 @@ export default {
         display: flex;
         color: white;
         height: 80px;
-        font-size: 2.5rem;
-        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     }
 
     .flex-icon {

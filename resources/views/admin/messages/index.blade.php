@@ -8,7 +8,7 @@
     @endif
 
     <div class="table-responsive">
-        <table class="table table-striped table-sm">
+        <table class="table table-striped table-sm mb-5">
             <thead>
                 <tr>
                     <th scope="col">ID</th>
@@ -21,10 +21,18 @@
             <tbody>
                 @foreach ($messages as $message)
                     <tr>
-                        <th scope="row">{{ $message->id }}</th>
-                        <td>{{ $message->title }}</td>
-                        <td>{{ $message->guest_name }}</td>
-                        <td>{{ $message->guest_last_name}}</td>
+                        <th scope="row">
+                            <div class="table-rows">{{ $message->id }}</div>
+                        </th>
+                        <td>
+                            <div class="table-rows">{{ $message->title }}</div>
+                        </td>
+                        <td>
+                            <div class="table-rows">{{ $message->guest_name }}</div>
+                        </td>
+                        <td>
+                            <div class="table-rows">{{ $message->guest_last_name}}</div>
+                        </td>
                         <td>
                             <a href="{{ route('admin.messages.show', ['message' => $message]) }}" class="btn btn-primary">Visualizza</a>
                         </td>

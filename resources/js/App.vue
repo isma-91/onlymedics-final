@@ -58,6 +58,10 @@ export default {
         }
     }
 
+    .max-page {
+        min-height: 100vh;
+    }
+
     ul{
         list-style-type: none;
         margin: 0;

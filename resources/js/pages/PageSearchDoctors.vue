@@ -1,5 +1,5 @@
 <template>
-    <div class="grid container">
+    <div class="grid container max-page">
         <div class="grid-int d-flex justify-content-center align-items-center">
             <input
             type="search"
@@ -59,8 +59,8 @@
                 </ul>
             </nav>
         </div>
-        <div v-if="isFiltered">
-            <h1>Medici filtrati per: {{ this.specialization }}</h1>
+        <div v-if="isFiltered" class="max-page">
+            <!-- <h1>Medici filtrati per: {{ this.specialization }}</h1> -->
             <div class="row g-3">
                 <div  v-for="doctor in doctors" :key="doctor.id" class="col-sm-6 col-md-4">
                     <div class="card h-100 overflow-hidden"
@@ -126,7 +126,6 @@ export default {
                     },
                 }).then(response => {
                     this.doctors = response.data.results;
-                    //console.log( this.doctors);
                 }).catch(error => {
                     console.log(error);
                 });

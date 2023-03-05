@@ -14,7 +14,7 @@ class MessageController extends Controller
     {
         $user = Auth::user();
         // $messages = Message::all();
-        $messages = Message::where('user_id', Auth::id())->paginate(5);
+        $messages = Message::where('user_id', Auth::id())->paginate(6);
 
         return view('admin.messages.index', [
             'messages' => $messages,

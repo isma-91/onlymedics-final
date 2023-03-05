@@ -18,17 +18,17 @@
             @foreach ($reviews as $review)
                 <tr>
                         <th scope="row">
-                            <div class="righe">
+                            <div class="table-rows">
                                 {{ $review->id }}
                             </div>
                         </th>
                         <td>
-                            <div class="righe">
+                            <div class="table-rows">
                                 {{ $review->guest_name }}
                             </div>
                         </td>
                         <td>
-                            <div class="righe">
+                            <div class="table-rows">
                                 {{ $review->guest_last_name}}
                             </div>
                         </td>
@@ -43,7 +43,7 @@
                             </div>
                         </th>
                         <td>
-                            <div class="righe">
+                            <div class="table-rows">
                                 <a href="{{ route('admin.reviews.show', ['review' => $review]) }}" class="btn btn-primary">Visualizza</a>
                             </div>
                         </td>
